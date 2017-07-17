@@ -52,6 +52,6 @@ sudo yum install -y xrootd-fuse
 
 if [ "$node" == "redirector" ]; then
     sudo mkdir /xrootdfs
-    sudo chown xrootd.xrootd xrootdfs
-    sudo xroodfs -o rdr=root://$redirector_hostname:1094//data,uid=xrootd /xrootdfs
+    sudo chown xrootd.xrootd /xrootdfs
+    sudo xrootdfs -o rdr=root://$redirector_hostname:1094//data,uid=xrootd /xrootdfs
 fi
