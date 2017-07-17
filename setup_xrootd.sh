@@ -47,3 +47,11 @@ sudo chown -R xrootd.xrootd /data
 sudo systemctl start cmsd@test.service
 sudo systemctl start xrootd@test.service
 
+
+sudo yum install xrootd-fuse
+
+if [ "$node" == "redirector" ]; then
+    mkdir /xrootdfs
+    chown xrootd.xrootd xrootdfs
+    sudo xroodfs -o rdr=root://$redirector_hostname:1094//data,uid=xrootd /xrootdfs
+fi
