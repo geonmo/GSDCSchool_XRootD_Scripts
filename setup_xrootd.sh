@@ -21,8 +21,7 @@ sudo yum install -y xrootd-server
 sudo yum install -y git
 sudo firewall-cmd --permanent --add-port=1094/tcp
 sudo firewall-cmd --permanent --add-port=3121/tcp
-sudo systemctl reload firewalld
-
+sudo firewall-cmd --reload
 
 if [ "$node" == "redirector" ]; then
 echo "all.export /data
