@@ -25,18 +25,20 @@ sudo systemctl reload firewalld
 
 
 if [ "$node" == "redirector" ]; then
-sudo echo "all.export /data
+echo "all.export /data
 set xrdr=${redirector_hostname}
 all.manager \$(xrdr) 3121
 all.role manager
-" > /etc/xrootd/xrootd-test.cfg
+" > /tmp/xrootd-test.cfg
+sudo cp /tmp/xrootd-test.cfg /etc/xrootd
 else 
 sudo echo "all.export /data
 set xrdr=${redirector_hostname}
 all.manager \$(xrdr) 3121
 all.role server
 cms.space min 2g 5G
-" > /etc/xrootd/xrootd-test.cfg
+" > /tmp/xrootd-test.cfg
+sudo cp /tmp/xrootd-test.cfg /etc/xrootd
 fi
 
 sudo mkdir /data
