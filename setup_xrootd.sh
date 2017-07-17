@@ -1,0 +1,48 @@
+#!/bin/bash
+
+
+node="server"
+redirector_hostname=""
+if [[ $(hostname -s) = *mn ]]; then
+    echo "This machie is a \"Master Node\". Setup XrootD redirector."
+    node="redirector"
+else
+    echo "This machie is a \"Work Node\". Setup XrootD server."
+    node="server"
+fi
+
+
+hostname=`hostname -s`
+redirector_hostname=${hostname/wn/mn}
+
+### Common 
+sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
+sudo yum install -y xrootd-server
+sudo yum install -y git
+sudo firewall-cmd --permanent --add-port=1094/tcp
+sudo firewall-cmd --permanent --add-port=3121/tcp
+sudo systemctl reload firewalld
+
+
+if [ "$node" == "redirector" ]; then
+sudo echo "all.export /data
+set xrdr=${redirector_hostname}
+all.manager \$(xrdr) 3121
+all.role manager
+" > /etc/xrootd/xrootd-test.cfg
+else 
+sudo echo "all.export /data
+set xrdr=${redirector_hostname}
+all.manager \$(xrdr) 3121
+all.role server
+cms.space min 2g 5G
+" > /etc/xrootd/xrootd-test.cfg
+fi
+
+sudo mkdir /data
+sudo touch /data/${hostname}
+sudo chown -R xrootd.xrootd /data
+
+sudo systemctl start cmsd@test.service
+sudo systemctl start xrootd@test.service
+
