@@ -13,7 +13,7 @@ fi
 
 
 hostname=`hostname -s`
-redirector_hostname=${hostname/wn/mn}
+redirector_hostname=${hostname/wn*/mn}
 
 ### Common 
 sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
