@@ -1,1 +1,2 @@
-# GSDCSchool2017_Scripts
+# GSDCSchool_XRootD_Scripts
+## XRootD Installation scripts.
