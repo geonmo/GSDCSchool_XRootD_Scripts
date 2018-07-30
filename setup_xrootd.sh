@@ -19,7 +19,7 @@ redirector_hostname=${hostname/wn*/mn}
 sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
 sudo yum install -y xrootd-server
 sudo yum install -y git
-sudo systemctl start firewalld
+sudo systemctl restart firewalld
 sudo firewall-cmd --permanent --add-port=1094/tcp
 sudo firewall-cmd --permanent --add-port=3121/tcp
 sudo firewall-cmd --reload
