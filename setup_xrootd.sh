@@ -49,7 +49,7 @@ sudo systemctl start cmsd@test.service
 sudo systemctl start xrootd@test.service
 
 
-sudo yum install -y xrootd-fuse
+sudo yum install -y xrootd-fuse xrootd-client
 
 if [ "$node" == "redirector" ]; then
     sudo mkdir /xrootdfs
