@@ -16,43 +16,60 @@ hostname=`hostname -s`
 redirector_hostname=${hostname/wn*/mn}
 
 ### Common 
+
+## No longer to download xrootd repository if the epel release is installed, but
+#sudo yum install -y epel-release
 sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
-sudo yum install -y xrootd-server
+
+## Package Installation.
+sudo yum install -y xrootd
 sudo yum install -y git
+
+groupmod -g 1094 xrootd
+usermod -u 1094 -g 1094 xrootd
+
+## Firewall Setting.
 sudo systemctl restart firewalld
 sudo firewall-cmd --permanent --add-port=1094/tcp
 sudo firewall-cmd --permanent --add-port=3121/tcp
 sudo firewall-cmd --reload
 
+
+## Create xrootd configuration file.
 if [ "$node" == "redirector" ]; then
-echo "all.export /data
+cat << EOF > /tmp/xrootd-myconf.cfg
+all.export /data
 set xrdr=${redirector_hostname}
 all.manager \$(xrdr) 3121
 all.role manager
-" > /tmp/xrootd-test.cfg
-sudo cp /tmp/xrootd-test.cfg /etc/xrootd
+EOF
 else 
-sudo echo "all.export /data
+cat << EOF > /tmp/xrootd-myconf.cfg
+all.export /data
 set xrdr=${redirector_hostname}
 all.manager \$(xrdr) 3121
 all.role server
-cms.space min 2g 5G
-" > /tmp/xrootd-test.cfg
-sudo cp /tmp/xrootd-test.cfg /etc/xrootd
+cms.space min 200m 500m
+EOF
 fi
 
+## Copy the conf file to /etc/xrootd
+sudo cp /tmp/xrootd-myconf.cfg /etc/xrootd
+
+## Prepare mounting point.
 sudo mkdir /data
 sudo touch /data/${hostname}
 sudo chown -R xrootd.xrootd /data
 
-sudo systemctl start cmsd@test.service
-sudo systemctl start xrootd@test.service
+## Start the services.
+sudo systemctl start cmsd@myconf.service
+sudo systemctl start xrootd@myconf.service
 
-
+## Install the client packages.
 sudo yum install -y xrootd-fuse xrootd-client
 
-if [ "$node" == "redirector" ]; then
+if [ "${node}" == "redirector" ]; then
     sudo mkdir /xrootdfs
     sudo chown xrootd.xrootd /xrootdfs
-    sudo xrootdfs -o rdr=root://$redirector_hostname:1094//data,uid=xrootd /xrootdfs
+    sudo xrootdfs -o rdr=root://${redirector_hostname}:1094//data,uid=xrootd /xrootdfs
 fi
