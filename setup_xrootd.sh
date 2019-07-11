@@ -25,8 +25,8 @@ sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d
 sudo yum install -y xrootd
 sudo yum install -y git
 
-groupmod -g 1094 xrootd
-usermod -u 1094 -g 1094 xrootd
+sudo groupmod -g 1094 xrootd
+sudo usermod -u 1094 -g 1094 xrootd
 
 ## Firewall Setting.
 sudo systemctl restart firewalld
