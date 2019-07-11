@@ -1,0 +1,13 @@
+executable =
+universe   = 
+log = condor.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+output = job_$(Process).out
+error = job_$(Process).err
+
+transfer_input_files = 
+arguments  = $(infile)
+queue infile in (novel1.txt novel2.txt novel3.txt novel4.txt)
+

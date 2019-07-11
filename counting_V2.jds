@@ -1,0 +1,13 @@
+executable = WordCounter.py
+universe   = vanilla
+log = condor.log
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+output = job_$(Process).out
+error = job_$(Process).err
+
+transfer_input_files = WordCounter.py
+arguments  = $(infile)
+queue infile in (/xrootdfs/novel1.txt /xrootdfs/novel2.txt /xrootdfs/novel3.txt /xrootdfs/novel4.txt
+/xrootdfs/novel5.txt)
