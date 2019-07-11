@@ -4,10 +4,10 @@
 node="server"
 redirector_hostname=""
 if [[ $(hostname -s) = *mn ]]; then
-    echo "This machie is a \"Master Node\". Setup XrootD redirector."
+    echo "This machie is a \"Master Node\".\nSetup the node as XrootD redirector."
     node="redirector"
 else
-    echo "This machie is a \"Work Node\". Setup XrootD server."
+    echo "This machie is a \"Work Node\".\nSetup the node as XrootD server."
     node="server"
 fi
 
