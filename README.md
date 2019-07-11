@@ -6,7 +6,7 @@ git clone https://github.com/geonmo/GSDCSchool_XRootD_Scripts.git
 ```
 
 ## setup_xrootd.sh
-XRootD 서버 설치를 실패한 유저들을 위해 스크립트를 지원해드립니다.
+XRootD 서버 설치를 실패한 수강생 분들을 위해 스크립트를 지원해드립니다.
 
 ## downloadnovel.sh
 소설을 다운로드 해주는 프로그램입니다.
