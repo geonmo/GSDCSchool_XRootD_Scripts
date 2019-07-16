@@ -60,19 +60,24 @@ sudo touch /data/${hostname}_tutorial_chapter1
 ```bash
 xrdfs group0X-wn0Y ls /data
 ```
-혹은
+혹은 아래와 같이 접속 후 내용을 확인하셔도 됩니다.
 ```bash
-xrdfs group0X-wn0Y 로 접속 후 
+xrdfs group0X-wn0Y 
 cd /data
 ls 
 ```
-를 입력하셔도 됩니다.
 #### XRootD Redirector측 점검
 1. 마찬가지로 redirector로 접근하여 모든 하위 XRootD 서버들의 파일이 보이는지를 점검합니다.
 ```bash
 xrdfs group0X-mn ls /data
 ```
 
+## 주의사항
+   * Solution 디렉토리에 답안이 준비되어 있으나 실습 단계에서는 보고 따라 쳐주시기 바랍니다.
+   * 각 라인마다 주석(\#)을 통해 알게된 내용에 대해서 기입해주셔도 좋습니다.
+   * 혹시 설정에 아무런 문제가 없는데 작동이 되지 않는다면 패키지가 불안정하게 설치되었을 가능성도 있습니다. yum reinstall를 통해 xrootd 와 xrootd-libs 등을 재설치하시면 문제가 해결됩니다.
+   * 팀원 분들과 긴밀히 상의하시면서 작성하시기 바랍니다. 
+   * 아래 실습 안내는 위 내용에 대한 답안을 포함하고 있습니다. 되도록 위 내용만 가지고 풀어보시기 바랍니다.
 
 ## 실습 안내
 <details><summary>안내 보기</summary>
@@ -83,10 +88,5 @@ print("hello world!")
 
 </details>
 
-
-## 주의사항
-   * Solution 디렉토리에 답안이 준비되어 있으나 실습 단계에서는 보고 따라 쳐주시기 바랍니다.
-   * 각 라인마다 주석(\#)을 통해 알게된 내용에 대해서 기입해주셔도 좋습니다.
-   * 혹시 설정에 아무런 문제가 없는데 작동이 되지 않는다면 패키지가 불안정하게 설치되었을 가능성도 있습니다. yum reinstall를 통해 xrootd 와 xrootd-libs 등을 재설치하시면 문제가 해결됩니다.
 
 
