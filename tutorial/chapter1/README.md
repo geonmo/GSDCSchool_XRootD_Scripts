@@ -81,13 +81,14 @@ xrdfs group0X-mn ls /data
 
 ## 실습 안내
 <details><summary>안내 보기</summary>
+ <p>
 1. 아래의 명령어로 yum 저장소(/etc/yum.repos.d)에 추가할 수 있습니다.
    * 위 링크[XRootD 다운로드 페에지](http://xrootd.org/dload.html)에 접속하신 후 아래쪽을 보시면 Yum repositories라는 부분이 있습니다. 
    * 내용 중 Stable 항목의 xrootd-stable-slc7.repo 글자 위에서 마우스 오른쪽을 클릭하고 [링크 주소 복사]를 누르시면 URL을 복사할 수 있습니다. 
 ```bash
 sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
 ```
-
+</p>
 </details>
 
 
