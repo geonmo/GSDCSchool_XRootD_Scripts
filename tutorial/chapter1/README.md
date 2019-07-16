@@ -56,6 +56,9 @@ sudo touch /data/${hostname}_tutorial_chapter1
 
 #### 공통 Step
 1. xrootd-fuse와 xrootd-client 패키지를 설치합니다.
+```bash
+yum install -y xrootd-fuse xrootd-client
+```
 #### XRootD 서버측 점검
 1. 각 XRootD 서버(group0X-wn) 담당자들은 본인의 서버에서 자신의 xrootd 서버에 접근이 가능한지 확인합니다.
    * 본인의 서버에서 /data파일에 만들어둔 파일이 보이면 성공입니다.
@@ -73,6 +76,19 @@ ls
 ```bash
 xrdfs group0X-mn ls /data
 ```
+2. XRootD 서버에서도 Redirector쪽에 잘 접근이 되는지 위 명령어를 그대로 입력하여 테스트를 해봅시다.
+
+#### XRootDFS 테스트
+1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
+```bash
+sudo mkdir /xrootdfs
+sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd
+```
+2. 그 후 디렉토리를 확인하여 모든 서버들의 정보가 올바로 표시되는지 확인합니다.
+```bash
+ls /xrootdfs
+```
+
 
 ## 주의사항
    * Solution 디렉토리에 답안이 준비되어 있으나 실습 단계에서는 보고 따라 쳐주시기 바랍니다.
