@@ -14,20 +14,20 @@ XRootD 서버를 구축합니다.
    *  group0X-wn : WN 서버들은 XRootD의 Server로 활용합니다.
 ## 주요 설정 파일 내용
    * group0X-mn
-'''bash
+```bash
 all.export /data
 set xrdr=${redirector_hostname}
 all.manager \$(xrdr) 3121
 all.role manager
-'''
+```
    * group0X-wn
-'''bash
+```bash
 all.export /data
 set xrdr=${redirector_hostname}
 all.manager \$(xrdr) 3121
 all.role server
 cms.space min 200m 500m
-'''
+```
 
 ## 실습 
 1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다. 
