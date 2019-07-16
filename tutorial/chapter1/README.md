@@ -47,9 +47,9 @@ cms.space min 200m 500m
 ```bash
 sudo touch /data/${hostname}_tutorial_chapter1
 ```
-1. 해당 디렉토리를 xrootd 유저가 사용할 수 있도록 사용자 권한을 부여합니다.
-1. cmsd 서비스를 시작합니다.
-1. xrootd 서비스를 시작합니다.
+10. 해당 디렉토리를 xrootd 유저가 사용할 수 있도록 사용자 권한을 부여합니다.
+11. cmsd 서비스를 시작합니다.
+12. xrootd 서비스를 시작합니다.
 ## 실습 Self Check
 
 #### 공통 Step
@@ -81,13 +81,46 @@ xrdfs group0X-mn ls /data
 
 ## 실습 안내
 <details><summary>안내 보기</summary>
- <p>
+
+<p>
+  
 1. 아래의 명령어로 yum 저장소(/etc/yum.repos.d)에 추가할 수 있습니다.
-   * 위 링크[XRootD 다운로드 페에지](http://xrootd.org/dload.html)에 접속하신 후 아래쪽을 보시면 Yum repositories라는 부분이 있습니다. 
-   * 내용 중 Stable 항목의 xrootd-stable-slc7.repo 글자 위에서 마우스 오른쪽을 클릭하고 [링크 주소 복사]를 누르시면 URL을 복사할 수 있습니다. 
+   * 내용 중 홈페이지 내용 중 _[Yum Repositories]_ - _[Stable]_ 항목의 *xrootd-stable-slc7.repo* 글자 위에서 마우스 오른쪽을 클릭하고 **링크 주소 복사**를 누르시면 URL을 복사할 수 있습니다. 
 ```bash
 sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
 ```
+2. 다음 명령어로 패키지를 설치합니다.
+```bash
+sudo yum install -y xrootd
+```
+3. 다음 명령어로 _xrootd_ 그룹의 gid와 _xrootd_ 사용자의 uid와 gid를 변경합니다.
+```bash
+sudo groupmod -g 1094 xrootd
+sudo usermod -u 1094 -g 1094 xrootd
+```
+4. 방화벽 프로그램을 이용하여 1094/tcp, 3121/tcp를 영구적으로 추가하고 이를 현재 시스템에 적용합니다.
+```bash
+sudo systemctl restart firewalld
+sudo firewall-cmd --permanent --add-port=1094/tcp
+sudo firewall-cmd --permanent --add-port=3121/tcp
+sudo firewall-cmd --reload
+```
+5. /etc/xrootd 디렉토리로 이동하여 xrootd-myconf.cfg 파일을 만듭니다. 
+6. /data 디렉토리를 만듭니다.
+```bash
+sudo mkdir /data
+```
+7. /data 디렉토리의 사용자와 그룹을 변경합니다.
+   * -R 옵션은 하부 디렉토리를 전부 바꿀 때 사용합니다. /data에 하부 디렉토리가 없기 때문에 의미는 없습니다.
+```bash
+sudo chown -R xrootd.xrootd /data
+```
+8. myconf 설정 파일용 cmsd, xrootd 서비스를 시작합니다.
+```bash
+sudo systemctl start cmsd@myconf.service
+sudo systemctl start xrootd@myconf.service
+```
+
 </p>
 </details>
 
