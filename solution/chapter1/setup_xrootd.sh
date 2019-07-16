@@ -1,0 +1,1 @@
+../../utils/setup_xrootd.sh
