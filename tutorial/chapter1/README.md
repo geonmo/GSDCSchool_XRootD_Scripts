@@ -124,6 +124,11 @@ sudo firewall-cmd --permanent --add-port=3121/tcp
 sudo firewall-cmd --reload
 ```
 5. /etc/xrootd 디렉토리로 이동하여 xrootd-myconf.cfg 파일을 만듭니다. 
+   * xrootd-clustered.cfg 파일을 참고할 수 있습니다만, 해당 파일 자체는 권한 설정의 문제로 작동을 하지 않습니다.
+```bash
+cd /etc/xrootd
+vim xrootd-myconf.cfg
+```
 6. /data 디렉토리를 만듭니다.
 ```bash
 sudo mkdir /data
@@ -138,7 +143,6 @@ sudo chown -R xrootd.xrootd /data
 sudo systemctl start cmsd@myconf.service
 sudo systemctl start xrootd@myconf.service
 ```
-
 </p>
 </details>
 
