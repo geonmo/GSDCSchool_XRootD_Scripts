@@ -52,6 +52,7 @@ sudo touch /data/${hostname}_tutorial_chapter1
 1. xrootd 서비스를 시작합니다.
 ## 실습 Self Check
 
+#### 공통 Step
 1. xrootd-fuse와 xrootd-client 패키지를 설치합니다.
 #### XRootD 서버측 점검
 1. 각 XRootD 서버(group0X-wn) 담당자들은 본인의 서버에서 자신의 xrootd 서버에 접근이 가능한지 확인합니다.
@@ -66,8 +67,6 @@ cd /data
 ls 
 ```
 를 입력하셔도 됩니다.
-
-
 #### XRootD Redirector측 점검
 1. 마찬가지로 redirector로 접근하여 모든 하위 XRootD 서버들의 파일이 보이는지를 점검합니다.
 ```bash
