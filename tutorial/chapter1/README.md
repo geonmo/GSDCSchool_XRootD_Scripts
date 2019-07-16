@@ -74,16 +74,18 @@ xrdfs group0X-mn ls /data
 
 ## 주의사항
    * Solution 디렉토리에 답안이 준비되어 있으나 실습 단계에서는 보고 따라 쳐주시기 바랍니다.
-   * 각 라인마다 주석(\#)을 통해 알게된 내용에 대해서 기입해주셔도 좋습니다.
+   * 설정 파일의 주석은 샵 기호(\#)로 할 수 있습니다.
    * 혹시 설정에 아무런 문제가 없는데 작동이 되지 않는다면 패키지가 불안정하게 설치되었을 가능성도 있습니다. yum reinstall를 통해 xrootd 와 xrootd-libs 등을 재설치하시면 문제가 해결됩니다.
    * 팀원 분들과 긴밀히 상의하시면서 작성하시기 바랍니다. 
    * 아래 실습 안내는 위 내용에 대한 답안을 포함하고 있습니다. 되도록 위 내용만 가지고 풀어보시기 바랍니다.
 
 ## 실습 안내
 <details><summary>안내 보기</summary>
-
-```python
-print("hello world!")
+1. 아래의 명령어로 yum 저장소(/etc/yum.repos.d)에 추가할 수 있습니다.
+   * 위 링크[XRootD 다운로드 페에지](http://xrootd.org/dload.html)에 접속하신 후 아래쪽을 보시면 Yum repositories라는 부분이 있습니다. 
+   * 내용 중 Stable 항목의 xrootd-stable-slc7.repo 글자 위에서 마우스 오른쪽을 클릭하고 [링크 주소 복사]를 누르시면 URL을 복사할 수 있습니다. 
+```bash
+sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
 ```
 
 </details>
