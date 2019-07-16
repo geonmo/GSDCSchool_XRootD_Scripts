@@ -18,15 +18,15 @@ XRootD 서버를 구축합니다.
    * group0X-mn
 ```bash
 all.export /data
-set xrdr=${redirector_hostname}
-all.manager \$(xrdr) 3121
+set xrdr=group0X-mn
+all.manager $(xrdr) 3121
 all.role manager
 ```
    * group0X-wn
 ```bash
 all.export /data
-set xrdr=${redirector_hostname}
-all.manager \$(xrdr) 3121
+set xrdr=group0X-mn
+all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
 ```
@@ -96,9 +96,9 @@ ls /xrootdfs
    * 혹시 설정에 아무런 문제가 없는데 작동이 되지 않는다면 패키지가 불안정하게 설치되었을 가능성도 있습니다. 
       * yum reinstall를 통해 xrootd 와 xrootd-libs 등을 재설치하시면 문제가 해결됩니다.
    * 팀원 분들과 긴밀히 상의하시면서 작성하시기 바랍니다. 
-   * 아래 실습 안내는 위 내용에 대한 답안을 포함하고 있습니다. 되도록 위 내용만 가지고 풀어보시기 바랍니다.
+   * 아래 실습 따라하기는 위 내용에 대한 답안을 포함하고 있습니다. 되도록 위 내용만 가지고 풀어보시기 바랍니다.
 ------------
-## 실습 안내
+## 실습 따라하기
 <details><summary>안내 보기</summary>
 
 <p>
