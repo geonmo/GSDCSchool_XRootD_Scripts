@@ -138,10 +138,13 @@ sudo mkdir /data
 ```bash
 sudo chown -R xrootd.xrootd /data
 ```
-8. myconf 설정 파일용 cmsd, xrootd 서비스를 시작합니다.
+8. myconf 설정 파일용 cmsd, xrootd 서비스를 시작합니다. 또한, 이후 부팅시에도 서비스가 시작되도록 활성화합니다.
 ```bash
 sudo systemctl start cmsd@myconf.service
+sudo systemctl enable cmsd@myconf.service
 sudo systemctl start xrootd@myconf.service
+sudo systemctl enable xrootd@myconf.service
+
 ```
 </p>
 </details>
