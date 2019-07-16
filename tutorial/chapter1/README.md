@@ -19,14 +19,14 @@ XRootD 서버를 구축합니다.
 ```bash
 all.export /data
 set xrdr=${redirector_hostname}
-all.manager \$(xrdr) 3121
+all.manager $(xrdr) 3121
 all.role manager
 ```
    * group0X-wn
 ```bash
 all.export /data
 set xrdr=${redirector_hostname}
-all.manager \$(xrdr) 3121
+all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
 ```
