@@ -61,7 +61,14 @@ sudo mount -t xfs /dev/loop1 /mnt/disk02
 
 ## 실습 
 1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다. 
-1. xrootd 서비스를 시작합니다.
+   * 이번 실습에서 XRootD Redirector 서버는 변경사항이 없습니다. 
+      * 타 조원의 서버로 접속하여 진행을 보조하거나 /var/log/xrootd/myconf에 있는 로그파일들을 살피면서 접속 여부를 확인해주세요.
+1. /xrootdfs 디렉토리의 마운트를 해제합니다. 만약 다른 디스크 서버들이 먼저 진행하여 접근이 불가능해졌다면 -l 옵션으로 마운트를 해제하시기 바랍니다.
+1. XRootD 디스크 노드의 xrootd와 cmsd 서비스를 중지합니다.
+1. /mnt/disk01과 /mnt/disk02에 쓰기가 가능한지 확인합니다. xrootd 사용자는 해당 디렉토리에 반드시 쓰기가 가능해야 합니다.
+1. /etc/xrootd/xrootd-myconf.cfg 파일을 같은 디렉토리의 xrootd-multidisk.cfg로 복사합니다.
+1. xrootd-multidisk.cfg 내용을 위 내용을 참고하여 수정합니다.
+1. xrootd와 cmsd 서비스를 시작합니다.
 
 ## 실습 Self Check
 
