@@ -61,6 +61,7 @@ sudo touch /data/${hostname}_tutorial_chapter1
 1. xrootd-fuse와 xrootd-client 패키지를 설치합니다.
 ```bash
 yum install -y xrootd-fuse xrootd-client
+```
 2. 본인의 서버에서 자신의 xrootd 서버에 접근이 가능한지 확인합니다.
    * 본인의 서버에서 /data파일에 만들어둔 파일이 보이면 성공입니다.
 ```bash
