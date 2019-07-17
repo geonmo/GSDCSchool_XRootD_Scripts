@@ -64,7 +64,7 @@ sudo chown -R xrootd.xrootd /var/run/xrootd
 
 ## Prepare mounting point.
 sudo mkdir /data
-sudo touch /data/${hostname}
+sudo touch /data/${hostname}_tutorial_chapter1
 sudo chown -R xrootd.xrootd /data
 
 
