@@ -60,41 +60,18 @@ sudo mount -t xfs /dev/loop1 /mnt/disk02
 
 
 ## 실습 
-1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다. 
-   * 이번 실습에서 XRootD Redirector 서버는 변경사항이 없습니다. 
-      * 타 조원의 서버로 접속하여 진행을 보조하거나 /var/log/xrootd/myconf에 있는 로그파일들을 살피면서 접속 여부를 확인해주세요.
-1. /xrootdfs 디렉토리의 마운트를 해제합니다. 만약 다른 디스크 서버들이 먼저 진행하여 접근이 불가능해졌다면 -l 옵션으로 마운트를 해제하시기 바랍니다.
+1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다.    
+1. /xrootdfs 디렉토리의 마운트를 해제합니다. 
+   * 만약, 다른 디스크 서버들이 먼저 해제하거나 사용 중으로 해제가 안된다면 -l 옵션으로 마운트를 해제하시기 바랍니다.
 1. XRootD 디스크 노드의 xrootd와 cmsd 서비스를 중지합니다.
-1. /mnt/disk01과 /mnt/disk02에 쓰기가 가능한지 확인합니다. xrootd 사용자는 해당 디렉토리에 반드시 쓰기가 가능해야 합니다.
+1. /mnt/disk01과 /mnt/disk02에 쓰기가 가능한지 확인합니다. 
+   * xrootd 사용자는 해당 디렉토리에 반드시 쓰기가 가능해야 합니다.
 1. /etc/xrootd/xrootd-myconf.cfg 파일을 같은 디렉토리의 xrootd-multidisk.cfg로 복사합니다.
-1. xrootd-multidisk.cfg 내용을 위 내용을 참고하여 수정합니다.
+1. xrootd-multidisk.cfg 내용을 위 내용을 참고하여 수정합니다.   
 1. xrootd와 cmsd 서비스를 시작합니다.
-
+1. 기존 myconf 서비스를 비활성화하고 multidisk 서비스 활성화합니다.
 ## 실습 Self Check
 
-#### 공통 Step
-1. xrootd-fuse와 xrootd-client 패키지를 설치합니다.
-```bash
-yum install -y xrootd-fuse xrootd-client
-```
-#### XRootD 서버측 점검
-1. 각 XRootD 서버(group0X-wn) 담당자들은 본인의 서버에서 자신의 xrootd 서버에 접근이 가능한지 확인합니다.
-   * 본인의 서버에서 /data파일에 만들어둔 파일이 보이면 성공입니다.
-```bash
-xrdfs group0X-wn0Y ls /data
-```
-혹은 아래와 같이 접속 후 내용을 확인하셔도 됩니다.
-```bash
-xrdfs group0X-wn0Y 
-cd /data
-ls 
-```
-#### XRootD Redirector측 점검
-1. 마찬가지로 redirector로 접근하여 모든 하위 XRootD 서버들의 파일이 보이는지를 점검합니다.
-```bash
-xrdfs group0X-mn ls /data
-```
-2. XRootD 서버에서도 Redirector쪽에 잘 접근이 되는지 위 명령어를 그대로 입력하여 테스트를 해봅시다.
 
 #### XRootDFS 테스트
 1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
@@ -109,61 +86,68 @@ ls /xrootdfs
 
 
 ## 주의사항
-   * Solution 디렉토리에 답안이 준비되어 있으나 실습 단계에서는 보고 따라 쳐주시기 바랍니다.
-   * 설정 파일의 주석은 샵 기호(\#)로 할 수 있습니다.
-   * 혹시 설정에 아무런 문제가 없는데 작동이 되지 않는다면 패키지가 불안정하게 설치되었을 가능성도 있습니다. 
-      * yum reinstall를 통해 xrootd 와 xrootd-libs 등을 재설치하시면 문제가 해결됩니다.
-   * 팀원 분들과 긴밀히 상의하시면서 작성하시기 바랍니다. 
-   * 아래 실습 따라하기는 위 내용에 대한 답안을 포함하고 있습니다. 되도록 위 내용만 가지고 풀어보시기 바랍니다.
+   * 설정 파일의 주석은 샵 기호(\#)로 할 수 있습니다.   
 ------------
 ## 실습 따라하기
 <details><summary>안내 보기</summary>
 
 <p>
   
-1. 아래의 명령어로 yum 저장소(/etc/yum.repos.d)에 추가할 수 있습니다.
-   * 내용 중 홈페이지 내용 중 _[Yum Repositories]_ - _[Stable]_ 항목의 *xrootd-stable-slc7.repo* 글자 위에서 마우스 오른쪽을 클릭하고 **링크 주소 복사**를 누르시면 URL을 복사할 수 있습니다. 
+1. /xrootdfs 디렉토리의 마운트를 해제합니다.
 ```bash
-sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
+sudo umount /xrootdfs
 ```
-2. 다음 명령어로 패키지를 설치합니다.
+만약 마운트 해제가 잘 안된다면
 ```bash
-sudo yum install -y xrootd
+sudo umount -l /xrootdfs
 ```
-3. 다음 명령어로 _xrootd_ 그룹의 gid와 _xrootd_ 사용자의 uid와 gid를 변경합니다.
+로 해제를 합니다. 
+2. xrootd, cmsd 서비스를 해제합니다.
 ```bash
-sudo groupmod -g 1094 xrootd
-sudo usermod -u 1094 -g 1094 xrootd
+sudo systemctl stop xrootd
+sudo systemctl stop cmsd
 ```
-4. 방화벽 프로그램을 이용하여 1094/tcp, 3121/tcp를 영구적으로 추가하고 이를 현재 시스템에 적용합니다.
+3. /mnt/disk01과 /mnt/disk02의 소유자를 변경합니다.
 ```bash
-sudo systemctl restart firewalld
-sudo firewall-cmd --permanent --add-port=1094/tcp
-sudo firewall-cmd --permanent --add-port=3121/tcp
-sudo firewall-cmd --reload
+chown -R xrootd.xrootd /mnt/disk01
+chown -R xrootd.xrootd /mnt/disk02
 ```
-5. /etc/xrootd 디렉토리로 이동하여 xrootd-myconf.cfg 파일을 만듭니다. 
-   * xrootd-clustered.cfg 파일을 참고할 수 있습니다만, 해당 파일 자체는 권한 설정의 문제로 작동을 하지 않습니다.
+만약에 xrootd의 쓰기 권한을 실제로 점검하고 싶다면 다음과 같이 shell을 변경한 후 직접 접근합니다.
+```bash
+## xrootd 유저의 쉘을 /bin/bash로 변경
+sudo chsh xrootd
+/bin/bash
+sudo passwd xrootd 
+<xrootd 암호 설정>
+
+## xrootd 사용자로 변경 후 쓰기 확인
+su - xrootd
+cd /mnt/disk01
+touch a
+rm a
+exit
+
+## xrootd 사용자를 접속 불가로 변경
+suod chsh xrootd
+/sbin/nologin
+```
+4. /etc/xrootd 디렉토리로 이동하여 xrootd-multidisk.cfg 파일을 만듭니다. 
 ```bash
 cd /etc/xrootd
-vim xrootd-myconf.cfg
+sudo cp xrootd-myconf.cfg xrootd-multidisk.cfg
 ```
-6. /data 디렉토리를 만듭니다.
+5. 내용을 수정한 후 서비스를 시작합니다.
 ```bash
-sudo mkdir /data
+sudo vim xrootd-multidisk.cfg
+sudo systemctl start cmsd@multidisk.service
+sudo systemctl start xrootd@multidisk.service
 ```
-7. /data 디렉토리의 사용자와 그룹을 변경합니다.
-   * -R 옵션은 하부 디렉토리를 전부 바꿀 때 사용합니다. /data에 하부 디렉토리가 없기 때문에 의미는 없습니다.
+6. 기존 myconf 서비스를 해지하고 multidisk 서비스를 활성화합니다.
 ```bash
-sudo chown -R xrootd.xrootd /data
-```
-8. myconf 설정 파일용 cmsd, xrootd 서비스를 시작합니다. 또한, 이후 부팅시에도 서비스가 시작되도록 활성화합니다.
-```bash
-sudo systemctl start cmsd@myconf.service
-sudo systemctl enable cmsd@myconf.service
-sudo systemctl start xrootd@myconf.service
-sudo systemctl enable xrootd@myconf.service
-
+sudo systemctl disable cmsd@myconf.service
+sudo systemctl disable xrootd@myconf.service
+sudo systemctl enable cmsd@multidisk.service
+sudo systemctl enable xrootd@multidisk.service
 ```
 </p>
 </details>
