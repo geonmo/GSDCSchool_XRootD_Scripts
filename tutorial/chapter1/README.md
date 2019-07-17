@@ -37,6 +37,7 @@ cms.space min 200m 500m
    * 실제 업무에서는 EPEL 저장소를 사용하시면 됩니다만, 이 실습에서는 직접 YUM 저장소를 설치하여야 합니다.
 1. 맡은 서버에 xrootd 패키지를 설치합니다.
 1. xrootd 그룹의 gid number와 xrootd 사용자 계정의 uid와 기본 gid를 1094로 변경합니다.
+1. xrootd 사용자의 uid와 gid가 바뀌었으므로 /var/log/xrootd와 /var/run/xrootd 디렉토리의 소유자도 xrootd로 변경합니다
 1. 방화벽(firewalld) 서비스를 재시작하고 port 1094/tcp와 3121/tcp를 허용합니다.
 1. XRootD 설정 파일을 작성합니다. 
    * 파일 내용은 위 설정 내용을 참고 바랍니다.
@@ -49,9 +50,9 @@ cms.space min 200m 500m
 ```bash
 sudo touch /data/${hostname}_tutorial_chapter1
 ```
-10. 해당 디렉토리를 xrootd 유저가 사용할 수 있도록 사용자 권한을 부여합니다.
-11. cmsd 서비스를 시작합니다.
-12. xrootd 서비스를 시작합니다.
+11. 해당 디렉토리를 xrootd 유저가 사용할 수 있도록 사용자 권한을 부여합니다.
+12. cmsd 서비스를 시작합니다.
+13. xrootd 서비스를 시작합니다.
 ## 실습 Self Check
 
 #### 공통 Step
