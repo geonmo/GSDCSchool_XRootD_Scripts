@@ -56,10 +56,18 @@ fi
 ## Copy the conf file to /etc/xrootd
 sudo cp /tmp/xrootd-myconf.cfg /etc/xrootd
 
+## Change ownership for xrootd system directory.
+sudo chown -R xrootd.xrootd /var/log/xrootd
+sudo chown -R xrootd.xrootd /var/run/xrootd
+
+
+
 ## Prepare mounting point.
 sudo mkdir /data
 sudo touch /data/${hostname}
 sudo chown -R xrootd.xrootd /data
+
+
 
 ## Start the services.
 sudo systemctl start cmsd@myconf.service
