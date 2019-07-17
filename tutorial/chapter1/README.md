@@ -1,4 +1,4 @@
-# Chapter1. 공인IP를 사용하는 환경에서의 XRootD 서버 구축
+# Chapter1. 완전 개방형 단일 디스크 기반 XRootD 스토리지 구축
 
 
 ## 이 챕터의 목표
