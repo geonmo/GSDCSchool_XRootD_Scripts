@@ -37,7 +37,7 @@ cms.space min 200m 500m
 
 ## 실습 준비 
 1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
-   * 아래 코드는 solution 디렉토리에 같은 내용으로 스크립트(*make_blkdev.sh*가 작성되어 있습니다.
+   * 아래 코드는 solution 디렉토리에 같은 내용으로 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/tree/master/solution/chapter2)**)가 작성되어 있습니다.
 ```bash
 sudo mkdir /blockdev
 cd /blockdev
