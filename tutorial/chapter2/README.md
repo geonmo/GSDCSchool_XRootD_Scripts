@@ -14,7 +14,7 @@
 ![xrootd_chapter2_figure](https://user-images.githubusercontent.com/4969463/61432525-bbde1780-a96b-11e9-829e-2d79a52da28a.png)
 
 ## 주요 설정 파일 내용
-   * group0X-mn
+   * group0X-mn : 변경 없음
 ```bash
 all.export /data
 set xrdr=group0X-mn
@@ -79,7 +79,7 @@ df
 
 
 #### XRootDFS 테스트
-1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
+1. 다음과 같이 xrootdfs를 마운트 합니다.
 ```bash
 sudo mkdir /xrootdfs_group0X-wn0Y
 sudo xrootdfs -o rdr=xroot://group0X-wn0Y:1094//data,uid=xrootd /xrdfs_group0X-wn0Y
@@ -90,10 +90,24 @@ sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ls /xrootd_group0X-wn0Y
 ls /xrootdfs
 ```
+3. /xrootd_group0X-wn0Y 디렉토리는 2GB정도로 표시되어야 합니다. 다음 명령어로 확인해보십니다.
+```bash
+df -h
+```
 
 
 ## 주의사항
    * 설정 파일의 주석은 샵 기호(\#)로 할 수 있습니다.   
+   * MN 서버의 xrootd, cmsd 서비스를 너무 일찍 끄면 WN에 마운트되어 있는 /xrootdfs 디렉토리가 마운트 해제가 되지 않습니다. 되도록 MN의 서비스를 가장 마지막에 끄도록 합니다.
+   * MN 서버 담당자는 해당 테스트를 실습하기 위해 다음 절차를 따르십시오.
+      * 포트를 변경한 xrootd, cmsd 서비스를 추가로 띄워야 합니다.
+      * xrootd-multinode.conf 파일을 원하는 다른 이름( 예] multinode-mn)으로 복사한 후 아래 키워드를 추가합니다.
+         * 새로 띄워진 서비스는 새로운 WN로서 MN에 접속을 시도할 것입니다.
+ ```bash
+### xrootd 포트번호 변경
+xrd.port 1096
+```
+ 
 ------------
 ## 실습 따라하기
 <details><summary>안내 보기</summary>
