@@ -80,7 +80,7 @@ ls
 Redirector로 데이터를 전송할 때 제대로 데이터가 전송되는지를 점검합니다.
 1. 임시 파일을 만듭니다.
 ```bash 
-dd if=/dev/zero of=$(uuidgen) bs=100M count=1
+dd if=/dev/urandom of=$(uuidgen) bs=100M count=1
 ls -l
 ```
 2. 생성된 파일을 MN 서버로 전송합니다.
