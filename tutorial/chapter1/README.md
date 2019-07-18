@@ -93,7 +93,7 @@ xrdfs gropu0X-mn ls /data
 ```
 4. 해당 파일이 어느 서버로 전송되었는지 확인합니다.
 ```bash
-xrdfs group09-mn locate <filename>
+xrdfs group09-mn locate /data/<filename>
 ```
 
 #### XRootDFS 테스트
