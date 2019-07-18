@@ -87,6 +87,7 @@ sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ```
 2. 그 후 디렉토리를 확인하여 모든 서버들의 정보가 올바로 표시되는지 확인합니다.
 ```bash
+ls /xrootd_group0X-wn0Y
 ls /xrootdfs
 ```
 
@@ -118,7 +119,7 @@ sudo systemctl stop cmsd@myconf
 chown -R xrootd.xrootd /mnt/disk01
 chown -R xrootd.xrootd /mnt/disk02
 ```
-만약에 xrootd의 쓰기 권한을 실제로 점검하고 싶다면 다음과 같이 shell을 변경한 후 직접 접근합니다.
+xrootd의 쓰기 권한을 직접 점검하고 싶다면 다음과 같이 shell을 변경한 후 직접 접근합니다.
 ```bash
 ## xrootd 유저의 쉘을 /bin/bash로 변경
 sudo chsh xrootd
