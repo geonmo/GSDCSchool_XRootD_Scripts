@@ -94,8 +94,8 @@ tmpfs                 1639596       0   1639596   0% /run/user/1001
 1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
 ```bash
 sudo mkdir /xrootdfs_group0X-wn0Y
-sudo xrootdfs -o rdr=xroot://group0X-wn0Y:1094//data,uid=xrootd
-sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd
+sudo xrootdfs -o rdr=xroot://group0X-wn0Y:1094//data,uid=xrootd /xrdfs_group0X-wn0Y
+sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ```
 2. 그 후 디렉토리를 확인하여 모든 서버들의 정보가 올바로 표시되는지 확인합니다.
 ```bash
