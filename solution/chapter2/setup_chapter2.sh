@@ -20,7 +20,7 @@ sudo systemctl stop cmsd@myconf
 
 sudo chown -R xrootd.xrootd /mnt/disk*
 
-cp multidisk-wn.conf /etc/xrootd/xrootd-multidisk.cfg
+cp multidisk-wn.cfg /etc/xrootd/xrootd-multidisk.cfg
 
 sudo systemctl start cmsd@multidisk
 sudo systemctl start xrootd@multidisk
