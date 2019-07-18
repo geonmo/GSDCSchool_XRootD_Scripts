@@ -91,7 +91,7 @@ sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ls /xrootd_group0X-wn0Y
 ls /xrootdfs
 ```
-3. /xrootd_group0X-wn0Y 디렉토리는 2GB정도로 표시되어야 합니다. 다음 명령어로 확인해보십니다.
+3. /xrootd_group0X-wn0Y 디렉토리는 2GB정도로 표시되어야 합니다. 다음 명령어로 확인할 수 있습니다.
 ```bash
 df -h
 ```
