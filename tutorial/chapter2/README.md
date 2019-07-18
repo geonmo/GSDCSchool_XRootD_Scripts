@@ -58,22 +58,9 @@ sudo mount -t xfs /dev/loop0 /mnt/disk01
 sudo mount -t xfs /dev/loop1 /mnt/disk02
 
 ```
-2. 아래 명령어로 제대로 마운트(###)가 되었는지 확인이 가능합니다.
+2. 아래 명령어로 **/mnt/disk01**과 **/mnt/disk02**가 제대로 마운트가 되었는지 확인이 가능합니다.
 ```bash
-[gsdc@group09-wn01 GSDCSchool_XRootD_Scripts]$ df
-Filesystem          1K-blocks    Used Available Use% Mounted on
-/dev/mapper/sl-root   8869888 2902064   5967824  33% /
-devtmpfs              8182756       0   8182756   0% /dev
-tmpfs                 8197964       0   8197964   0% /dev/shm
-tmpfs                 8197964   16768   8181196   1% /run
-tmpfs                 8197964       0   8197964   0% /sys/fs/cgroup
-tmpfs                 8197964      20   8197944   1% /tmp
-/dev/vda1              508588  223440    285148  44% /boot
-/dev/vdb             20961264      48  20961216   1% /mnt
-tmpfs                 1639596       0   1639596   0% /run/user/1001
-/dev/loop0            1038336   32928   1005408   4% /mnt/disk01   ###
-/dev/loop1            1038336   32928   1005408   4% /mnt/disk02   ###
-[gsdc@group09-wn01 GSDCSchool_XRootD_Scripts]$ 
+df
 ```
 
 
