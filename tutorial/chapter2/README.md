@@ -125,6 +125,7 @@ sudo umount /xrootdfs
 sudo umount -l /xrootdfs
 ```
 로 해제를 합니다. 
+
 2. xrootd, cmsd 서비스를 해제합니다.
 ```bash
 sudo systemctl stop xrootd@myconf
