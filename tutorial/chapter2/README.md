@@ -22,16 +22,16 @@ all.role manager
 ```
    * group0X-wn
 ```bash
-oss.space data /mnt/disk01
-oss.space data /mnt/disk02
+oss.localroot /data
+oss.space public /mnt/disk01
+oss.space public /mnt/disk02
 
 all.export /data
-oss.localroot /data
-set xrdr=group0X-mn
+set xrdr=group09-mn
 all.manager $(xrdr) 3121
 all.role server
-
 cms.space min 200m 500m
+
 ```
 
 ## 실습 준비 
@@ -55,7 +55,23 @@ sudo mount -t xfs /dev/loop0 /mnt/disk01
 sudo mount -t xfs /dev/loop1 /mnt/disk02
 
 ```
-
+2. 아래 명령어로 제대로 마운트(###)가 되었는지 확인이 가능합니다.
+```bash
+[gsdc@group09-wn01 GSDCSchool_XRootD_Scripts]$ df
+Filesystem          1K-blocks    Used Available Use% Mounted on
+/dev/mapper/sl-root   8869888 2902064   5967824  33% /
+devtmpfs              8182756       0   8182756   0% /dev
+tmpfs                 8197964       0   8197964   0% /dev/shm
+tmpfs                 8197964   16768   8181196   1% /run
+tmpfs                 8197964       0   8197964   0% /sys/fs/cgroup
+tmpfs                 8197964      20   8197944   1% /tmp
+/dev/vda1              508588  223440    285148  44% /boot
+/dev/vdb             20961264      48  20961216   1% /mnt
+tmpfs                 1639596       0   1639596   0% /run/user/1001
+/dev/loop0            1038336   32928   1005408   4% /mnt/disk01   ###
+/dev/loop1            1038336   32928   1005408   4% /mnt/disk02   ###
+[gsdc@group09-wn01 GSDCSchool_XRootD_Scripts]$ 
+```
 
 
 ## 실습 
@@ -75,7 +91,8 @@ sudo mount -t xfs /dev/loop1 /mnt/disk02
 #### XRootDFS 테스트
 1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
 ```bash
-sudo mkdir /xrootdfs
+sudo mkdir /xrootdfs_group0X-wn0Y
+sudo xrootdfs -o rdr=xroot://group0X-wn0Y:1094//data,uid=xrootd
 sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd
 ```
 2. 그 후 디렉토리를 확인하여 모든 서버들의 정보가 올바로 표시되는지 확인합니다.
@@ -103,8 +120,8 @@ sudo umount -l /xrootdfs
 로 해제를 합니다. 
 2. xrootd, cmsd 서비스를 해제합니다.
 ```bash
-sudo systemctl stop xrootd
-sudo systemctl stop cmsd
+sudo systemctl stop xrootd@myconf
+sudo systemctl stop cmsd@myconf
 ```
 3. /mnt/disk01과 /mnt/disk02의 소유자를 변경합니다.
 ```bash
@@ -135,7 +152,7 @@ suod chsh xrootd
 cd /etc/xrootd
 sudo cp xrootd-myconf.cfg xrootd-multidisk.cfg
 ```
-5. 내용을 수정한 후 서비스를 시작합니다.
+5. 내용을 수정한 후 서비스를 기존 서비스를 중지한 후 multidisk 설정으로 서비스를 시작합니다.
 ```bash
 sudo vim xrootd-multidisk.cfg
 sudo systemctl start cmsd@multidisk.service
