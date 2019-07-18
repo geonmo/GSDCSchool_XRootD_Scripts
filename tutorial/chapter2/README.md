@@ -22,7 +22,10 @@ all.role manager
 ```
    * group0X-wn
 ```bash
-oss.localroot /data
+## 서버 루트 파일시스템을 이용
+## disk1 위에 파일시스템을 구축하려면 
+## oss.localroot /mnt/disk01 (data 디렉토리를 추가해야 함)
+oss.localroot /
 oss.space public /mnt/disk01
 oss.space public /mnt/disk02
 
@@ -31,7 +34,6 @@ set xrdr=group09-mn
 all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
-
 ```
 
 ## 실습 준비 
