@@ -105,7 +105,7 @@ df -h
    * MN 서버의 xrootd, cmsd 서비스를 너무 일찍 끄면 WN에 마운트되어 있는 /xrootdfs 디렉토리가 마운트 해제가 되지 않습니다. 되도록 MN의 서비스를 가장 마지막에 끄도록 합니다.
    * (선택사항) MN 서버 담당자는 해당 테스트를 실습하기 위해 다음 절차를 따르십시오.
       * 포트를 변경한 xrootd, cmsd 서비스를 추가로 띄워야 합니다. 즉, MN 서버는 xrootd, cmsd 서비스가 2개씩 띄워야 합니다.
-      * WN의 xrootd-multinode.conf 파일을 원하는 다른 이름( 예] multinode-mn)으로 복사한 후 아래 키워드를 추가합니다.
+      * WN의 xrootd-multidisk.conf 파일을 원하는 다른 이름( 예] multidisk-mn)으로 복사한 후 아래 키워드를 추가합니다.
          * 새로 띄워진 서비스는 새로운 WN로서 MN에 접속을 시도할 것입니다.
  ```bash
 ### xrootd 포트번호 변경
