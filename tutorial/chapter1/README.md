@@ -76,6 +76,26 @@ ls
 3. 위 방식으로 타 XRootD 서버(group0X-wn0Y')에 접근이 가능한지 체크합니다.
 4. 위 방식으로 XRootD Redirect 서버(group0X-mn)에 접근이 가능한지 체크합니다.
 
+#### xrdcp 테스트
+Redirector로 데이터를 전송할 때 제대로 데이터가 전송되는지를 점검합니다.
+1. 임시 파일을 만듭니다.
+```bash 
+dd if=/dev/zero of=$(uuidgen) bs=100M count=1
+ls -l
+```
+2. 생성된 파일을 MN 서버로 전송합니다.
+```bash
+xrdcp <파일이름> root://group0X-mn//data
+```
+3. 전송이 성공적으로 이루어졌는지 확인합니다.
+```bash
+xrdfs gropu0X-mn ls /data
+```
+4. 해당 파일이 어느 서버로 전송되었는지 확인합니다.
+```bash
+xrdfs group09-mn locate <filename>
+```
+
 #### XRootDFS 테스트
 1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
 ```bash
