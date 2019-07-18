@@ -11,7 +11,6 @@
 각 서버들은 다음과 같은 역할로 설정될 것입니다.
    *  group0X-mn : MN 서버는 XRootD의 Redirector로 활용합니다.
    *  group0X-wn : WN 서버들은 XRootD의 Server로 활용합니다.
-
 ## 주요 설정 파일 내용
    * group0X-mn
 ```bash
