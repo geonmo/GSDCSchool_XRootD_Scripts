@@ -31,7 +31,7 @@ oss.space public /mnt/disk01
 oss.space public /mnt/disk02
 
 all.export /data
-set xrdr=group09-mn
+set xrdr=group0X-mn
 all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
