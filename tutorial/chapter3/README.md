@@ -18,7 +18,41 @@
    *  group0X-wn03 : NAS Server로 활용합니다.
 ![xrootd_chapter3_figure](https://user-images.githubusercontent.com/4969463/61511638-5bfe7400-aa32-11e9-8201-86aa081ffd21.png)
 
-## 실습 준비 (실습 전 반드시 같이 따라해봅시다.)
+## 사전 지식 설명
+#### FileSystem과 user_xattr
+chapter2에서 각 wn의 disk01과 disk02는 디스크를 xfs 파일시스템으로 만든 것을 기억하실 겁니다.
+
+리눅스에서 많이 사용되는 ext4와 xfs 파일시스템에는 user_attr이라는 재미있는 기능이 포함되어 있습니다. 
+
+먼저 이 기능을 어떻게 사용하는지 보여드리겠습니다.
+
+```bash
+## /mnt/disk01 디렉토리는 xfs 파일시스템으로 포맷되었습니다.
+cd /mnt/disk01
+## game.img 파일을 생성합니다. 
+sudo dd if=/dev/urandom of=game.img bs=10M count=1
+
+## 해당 파일은 10M 크기로 작성되었습니다.
+ls -lh game.img
+
+## game.img 파일에다가 메타데이터를 추가합니다. 반드시 user. 로 시작해야 합니다.
+sudo setfattr -n user.game_title -v "starcraft2" game.img
+
+## 그리고 다음 명령어로 해당 내용을 확인할 수 있습니다.
+getfattr -d game.img
+# file: game.img
+user.game_title="starcraft2"
+```
+
+
+
+
+
+
+
+
+
+## 실습 준비 
 1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
    * solution 디렉토리에 있는 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/tree/master/solution/chapter2)**) 파일을 실행하십시오.
       * 한줄씩 직접 입력하고 싶은 분들을 위해 명령어를 보여드립니다.
