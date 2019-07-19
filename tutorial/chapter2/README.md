@@ -47,17 +47,23 @@ cms.space min 200m 500m
 ```bash
 sudo mkdir /blockdev
 cd /blockdev
+## 1GB짜리 2개의 파일 생성
 sudo dd if=/dev/zero of=dev01.img bs=1G count=1
 sudo dd if=/dev/zero of=dev02.img bs=1G count=1
+
+## 각 파일을 loopback 장치로 등록
 sudo losetup /dev/loop0 /blockdev/dev01.img
 sudo losetup /dev/loop1 /blockdev/dev02.img
 
+## xfs 파일시스템 구성 (윈도우의 포맷과 동일)
 sudo mkfs.xfs /dev/loop0
 sudo mkfs.xfs /dev/loop1
 
+## 마운트할 디렉토리 생성
 sudo mkdir -p /mnt/disk01
 sudo mkdir -p /mnt/disk02
 
+## 장치 파일들을 디렉토리에 마운트
 sudo mount -t xfs /dev/loop0 /mnt/disk01
 sudo mount -t xfs /dev/loop1 /mnt/disk02
 
@@ -70,7 +76,7 @@ df
 
 ## 실습 
 1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다.    
-1. /xrootdfs 디렉토리의 마운트를 해제합니다. 
+1. /xrootdfs 디렉토리가 마운트되어 있다면 마운트를 해제합니다. 
    * 만약, 디렉토리가 사용 중으로 해제가 안된다면 -l 옵션으로 마운트를 해제하시기 바랍니다.
 1. XRootD 디스크 노드의 xrootd와 cmsd 서비스를 중지합니다.
 1. /mnt/disk01과 /mnt/disk02에 쓰기가 가능한지 확인합니다. 
