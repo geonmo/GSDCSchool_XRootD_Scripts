@@ -16,30 +16,6 @@
    *  group0X-wn : WN 서버들은 XRootD의 Server로 활용합니다.
 ![xrootd_chapter2_figure](https://user-images.githubusercontent.com/4969463/61432525-bbde1780-a96b-11e9-829e-2d79a52da28a.png)
 
-## 주요 설정 파일 내용
-   * group0X-mn : 변경 없음
-```bash
-all.export /data
-set xrdr=group0X-mn
-all.manager $(xrdr) 3121
-all.role manager
-```
-   * group0X-wn
-```bash
-## 서버 루트 파일시스템을 이용
-## disk1 위에 파일시스템을 구축하려면 
-## oss.localroot /mnt/disk01 (data 디렉토리를 추가해야 함)
-oss.localroot /
-oss.space public /mnt/disk01
-oss.space public /mnt/disk02
-
-all.export /data
-set xrdr=group0X-mn
-all.manager $(xrdr) 3121
-all.role server
-cms.space min 200m 500m
-```
-
 ## 실습 준비 
 1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
    * solution 디렉토리에 있는 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/tree/master/solution/chapter2)**) 파일을 실행하십시오.
@@ -73,6 +49,30 @@ sudo mount -t xfs /dev/loop1 /mnt/disk02
 df
 ```
 
+
+## 주요 설정 파일 내용
+   * group0X-mn : 변경 없음
+```bash
+all.export /data
+set xrdr=group0X-mn
+all.manager $(xrdr) 3121
+all.role manager
+```
+   * group0X-wn
+```bash
+## 서버 루트 파일시스템을 이용
+## disk1 위에 파일시스템을 구축하려면 
+## oss.localroot /mnt/disk01 (data 디렉토리를 추가해야 함)
+oss.localroot /
+oss.space public /mnt/disk01
+oss.space public /mnt/disk02
+
+all.export /data
+set xrdr=group0X-mn
+all.manager $(xrdr) 3121
+all.role server
+cms.space min 200m 500m
+```
 
 ## 실습 
 1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다.    
