@@ -101,7 +101,7 @@ xrdfs group0X-mn locate /data/<filename>
 1. 위 테스트가 끝나면 모든 머신에서 다음과 같이 xrootdfs를 마운트 합니다.
 ```bash
 sudo mkdir /xrootdfs
-sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootd
+sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ```
 2. 그 후 디렉토리를 확인하여 모든 서버들의 정보가 올바로 표시되는지 확인합니다.
 ```bash
