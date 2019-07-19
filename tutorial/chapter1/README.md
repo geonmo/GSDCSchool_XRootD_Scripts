@@ -94,7 +94,7 @@ xrdfs gropu0X-mn ls /data
 ```
 4. 해당 파일이 어느 서버로 전송되었는지 확인합니다.
 ```bash
-xrdfs group09-mn locate /data/<filename>
+xrdfs group0X-mn locate /data/<filename>
 ```
 
 #### XRootDFS 테스트
@@ -116,6 +116,10 @@ ls /xrootdfs
       * yum reinstall를 통해 xrootd 와 xrootd-libs 등을 재설치하시면 문제가 해결됩니다.
    * 팀원 분들과 긴밀히 상의하시면서 작성하시기 바랍니다. 
    * 아래 실습 따라하기는 위 내용에 대한 답안을 포함하고 있습니다. 되도록 위 내용만 가지고 풀어보시기 바랍니다.
+## 토론
+   * XRootD의 Redirector와 서버의 역할을 정확히 이해하셨나요?
+   * 리다이렉트 서버 없이도 정상적으로 서비스가 가능할까요? 제한이 있다면 어떤 제한이 있을까요?
+   
 ------------
 ## 실습 따라하기
 <details><summary>안내 보기</summary>
