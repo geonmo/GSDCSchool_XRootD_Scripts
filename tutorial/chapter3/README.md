@@ -35,7 +35,7 @@ sudo dd if=/dev/urandom of=game.img bs=10M count=1
 ## 해당 파일은 10M 크기로 작성되었습니다.
 ls -lh game.img
 
-## game.img 파일에다가 메타데이터를 추가합니다. 반드시 user. 로 시작해야 합니다.
+## game.img 파일에다가 user attribute를 추가합니다. 반드시 user. 로 시작해야 합니다.
 sudo setfattr -n user.game_title -v "starcraft2" game.img
 
 ## 그리고 다음 명령어로 해당 내용을 확인할 수 있습니다.
@@ -43,8 +43,22 @@ getfattr -d game.img
 # file: game.img
 user.game_title="starcraft2"
 ```
+이 기능을 이용하여 chapter2에서 복사했던 파일의 내용을 확인해봅시다.
 
+```bash
+## sudo -i로 root로 아이디를 변경합니다.
+sudo -i
+cd /mnt/disk01/public/00
 
+## xrdcp로 복사한 파일을 확인합니다. 혹시 파일이 없으면 파일을 여러 개를 집어넣어 확인해봅시다.
+ls -l
+
+## 해당 파일의 attribute를 확인합니다.
+[root@group09-wn01 00]# getfattr -d 72E02F5D3ECC000000000a00140b000000000C6% 
+# file: 72E02F5D3ECC000000000a00140b000000000C6%
+user.XrdFrm.Pfn="/data/o.dat"
+```
+xrootd의 멀티 디스크
 
 
 
