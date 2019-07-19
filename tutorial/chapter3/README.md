@@ -1,4 +1,4 @@
-# Chapter 2. NAS를 포함하여 구축하기
+# Chapter 3. NAS를 포함하여 구축하기
 
 
 ## 이 챕터의 목표
@@ -9,15 +9,16 @@
    * 클라이언트(사용자)는 리다이렉트 서버 뿐만 아니라 각 디스크 서버들에 직접 접근이 가능해야 합니다.       
    * 클라이언트(사용자)는 리다이렉트 서버 뿐만 아니라 디스크 노드들의 호스트 이름(DNS 혹은 hosts 파일)를 알고 있어야 합니다.
    * 디스크 노드들은 데이터를 저장하기 위해 1개 이상의 디스크와 NAS 디렉토리를 가지고 있습니다.
+ 이번 Tutorial부터 모든 부분에 대해서 설명하지 않습니다. 반복적인 부분에 대해서 궁금하시면 이전 Tutorial 내용을 참고하시기 바랍니다.
 
 ## 서버 설명
 각 서버들은 다음과 같은 역할로 설정될 것입니다.
    *  group0X-mn : MN 서버는 XRootD의 Redirector로 활용합니다.
    *  group0X-wn01,02 : XRootD의 Server로 활용합니다.
-   *  group0X-wn03 : NAS 공간을 공급하는 NAS Server로 활용합니다.
+   *  group0X-wn03 : NAS Server로 활용합니다.
 ![xrootd_chapter2_figure](https://user-images.githubusercontent.com/4969463/61432525-bbde1780-a96b-11e9-829e-2d79a52da28a.png)
 
-## 실습 준비 
+## 실습 준비 (실습 전 반드시 같이 따라해봅시다.)
 1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
    * solution 디렉토리에 있는 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/tree/master/solution/chapter2)**) 파일을 실행하십시오.
       * 한줄씩 직접 입력하고 싶은 분들을 위해 명령어를 보여드립니다.
