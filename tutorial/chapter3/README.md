@@ -16,7 +16,7 @@
    *  group0X-mn : MN 서버는 XRootD의 Redirector로 활용합니다.
    *  group0X-wn01,02 : XRootD의 Server로 활용합니다.
    *  group0X-wn03 : NAS Server로 활용합니다.
-![xrootd_chapter2_figure](https://user-images.githubusercontent.com/4969463/61432525-bbde1780-a96b-11e9-829e-2d79a52da28a.png)
+![xrootd_chapter3_figure](https://user-images.githubusercontent.com/4969463/61511638-5bfe7400-aa32-11e9-8201-86aa081ffd21.png)
 
 ## 실습 준비 (실습 전 반드시 같이 따라해봅시다.)
 1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
