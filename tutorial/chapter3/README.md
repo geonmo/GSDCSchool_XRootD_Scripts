@@ -54,7 +54,9 @@ cd /mnt/disk01/public/00
 ls -l
 
 ## 해당 파일의 attribute를 확인합니다.
-[root@group09-wn01 00]# getfattr -d 72E02F5D3ECC000000000a00140b000000000C6% 
+getfattr -d 72E02F5D3ECC000000000a00140b000000000C6% 
+
+## 출력
 # file: 72E02F5D3ECC000000000a00140b000000000C6%
 user.XrdFrm.Pfn="/data/o.dat"
 ```
