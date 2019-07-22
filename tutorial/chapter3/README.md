@@ -82,9 +82,37 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 이러한 문제를 피하기 위해 xattr 기능을 꺼두면 됩니다. 단, PFN 위치 저장이 불가능해집니다.
 
 
-## 실습 준비 
-1. Chapter2 종료 후 환경을 기준으로 시작합니다.
 
+## 실습 준비
+   * Chapter2 종료 후 환경을 기준으로 시작합니다.
+
+## 주요 설정 파일 내용
+   * group0X-mn : 변경 없음
+   * group0X-wn0{1,2}
+```bash
+oss.localroot /
+oss.space public /mnt/disk01
+oss.space public /mnt/disk02
+oss.space public /mnt/nas
+
+all.export /data noxattrs
+set xrdr=group09-mn
+all.manager $(xrdr) 3121
+all.role server
+cms.space min 200m 500m
+```
+* group0X-wn03
+```bash
+### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
+all.export /
+oss.localroot /mnt/disk01
+all.adminpath /var/spool/xrootd
+all.pidpath /var/run/xrootd
+xrd.port 1095
+continue /etc/xrootd/config.d/
+```
+
+## 실습 
 
 ### group0X-mn은 변경사항 없습니다.
 
@@ -111,50 +139,9 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 1. /cms/nas 디렉토리에 group0X-wn03:1095와 gropu0X-wn03:1096을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
 1. 기존 xrootd-multidisk.cfg 파일을 xrootd-mix.cfg로 복사합니다.
 1. xrootd-mix.cfg에 oss.space public /mnt/nas를 추가합니다.
-1. xrootd-mix.cfg에 oss.path /mnt/nas nocheck nodread nomig norcreate nopurge nostage noxattrs를 추가합니다.
+1. xrootd-mix.cfg에 all.export /data 를 all.export /data noxattrs로 변경합니다. (noxattrs 추가)
 1. xrootd@mix 서비스를 시작합니다.
 
-
-
-## 주요 설정 파일 내용
-   * group0X-mn : 변경 없음
-```bash
-all.export /data
-set xrdr=group0X-mn
-all.manager $(xrdr) 3121
-all.role manager
-```
-   * group0X-wn0{1,2}
-```bash
-
-oss.localroot /
-oss.space public /mnt/disk01
-oss.space public /mnt/disk02
-oss.space public /mnt/nas
-
-
-all.export /data
-set xrdr=group0X-mn
-all.manager $(xrdr) 3121
-all.role server
-cms.space min 200m 500m
-```
-* group0X-wn03
-```bash
-
-
-
-## 실습 
-1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다.    
-1. /xrootdfs 디렉토리가 마운트되어 있다면 마운트를 해제합니다. 
-   * 만약, 디렉토리가 사용 중으로 해제가 안된다면 -l 옵션으로 마운트를 해제하시기 바랍니다.
-1. XRootD 디스크 노드의 xrootd와 cmsd 서비스를 중지합니다.
-1. /mnt/disk01과 /mnt/disk02에 쓰기가 가능한지 확인합니다. 
-   * xrootd 사용자는 해당 디렉토리에 반드시 쓰기가 가능해야 합니다.
-1. /etc/xrootd/xrootd-myconf.cfg 파일을 같은 디렉토리의 xrootd-multidisk.cfg로 복사합니다.
-1. xrootd-multidisk.cfg 내용을 위 내용을 참고하여 수정합니다.   
-1. xrootd와 cmsd 서비스를 시작합니다.
-1. 기존 myconf 서비스를 비활성화하고 multidisk 서비스 활성화합니다.
 ## 실습 Self Check
 
 
