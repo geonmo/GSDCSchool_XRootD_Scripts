@@ -56,11 +56,27 @@ ls -l
 ## 해당 파일의 attribute를 확인합니다.
 getfattr -d 72E02F5D3ECC000000000a00140b000000000C6% 
 
-## 출력
+## 출력 ##
 # file: 72E02F5D3ECC000000000a00140b000000000C6%
 user.XrdFrm.Pfn="/data/o.dat"
 ```
-xrootd의 멀티 디스크
+xrootd의 멀티 디스크 구조에서는 해당 파일의 경로를 user_xattr을 이용하여 기입하게 됩니다.
+
+불행히도 해당 기능은 몇몇 파일시스템에서만 지원이 되며 
+
+nfs나 xrootdfs 같은 NAS에서는 대개 지원되지 않습니다. (표준안은 제출되었습니다.)
+
+해당 기능을 아래와 같이 테스트해 볼 수 있습니다.
+```bash
+## On NFS, it is not working.
+[geonmo@ui10 ~]$ setfattr -n hello -v world noXattrOnNAS.txt 
+setfattr: noXattrOnNAS.txt: Operation not supported
+
+## On XRootDFS, no changed for user_xattr.
+[geonmo@ui10 xrootd]$ setfattr -n hello -v world noXattrOnXRootDFS.txt 
+[geonmo@ui10 xrootd]$ getfattr -d noXattrOnXRootDFS.txt 
+[geonmo@ui10 xrootd]$ 
+```
 
 
 
