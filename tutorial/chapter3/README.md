@@ -88,9 +88,11 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 
 ### group0X-mn은 변경사항 없습니다.
 
-### group0X-wn03 
+### group0X-wn03 (Standalone 모드로 실행합니다. cmsd 서비스가 필요 없습니다.)
+1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
 1. 기존 서비스를 모두 멈춥니다. (xrootd, cmsd)
 1. /mnt/disk01과 /mnt/disk02의 모든 파일을 삭제합니다. ( rm -rf /mnt/disk01 ; rm -rf /mnt/disk02 )
+1. 두 디렉토리에 /data 디렉토리를 만들고 사용자와 그룹을 xrootd로 변경합니다.
 1. /etc/xrootd/xrootd-standalone.cfg 파일을 xrootd-nas01.cfg와 xrootd-nas02.cfg로 복사합니다.
 1. xrootd-nas01.cfg의 all.export /tmp 를 all.export /로 변경합니다.
 1. xrootd-nas01.cfg 파일에 oss.localroot /mnt/disk01을 추가합니다.
@@ -100,12 +102,18 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 1. xrootd-nas02.cfg 파일에 xrd.port 1096를 추가합니다.
 1. xrootd@nas01 서비스와 xrootd@nas02 서비스를 시작합니다.
 1. xrdfs 명령어를 통해 서비스가 제대로 작동하는지 확인합니다.
+1. 방화벽에서 외부에서 1095/tcp, 1096/tcp 포트 접근을 허용합니다.
+1. gropu09-wn01, 02에서 xrdfs로 접근이 가능한지를 점검합니다.
 
 ### gropu0X-wn0{1,2}
+1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
 1. xrootd, cmsd 서비스를 중지합니다.
-1. wn03 디렉토리를 /cms/nas 디렉토리에 xrootdfs 명령어로 마운트 합니다.
+1. /cms/nas 디렉토리에 group0X-wn03:1095와 gropu0X-wn03:1096을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
 1. 기존 xrootd-multidisk.cfg 파일을 xrootd-mix.cfg로 복사합니다.
-1. xrootd-mix.cfg에 
+1. xrootd-mix.cfg에 oss.space public /mnt/nas를 추가합니다.
+1. xrootd-mix.cfg에 oss.path /mnt/nas nocheck nodread nomig norcreate nopurge nostage noxattrs를 추가합니다.
+1. xrootd@mix 서비스를 시작합니다.
+
 
 
 ## 주요 설정 파일 내용
@@ -185,70 +193,4 @@ xrd.port 1096
 ```
  
 ------------
-## 실습 따라하기
-<details><summary>안내 보기</summary>
-
-<p>
-  
-1. /xrootdfs 디렉토리의 마운트를 해제합니다.
-```bash
-sudo umount /xrootdfs
-```
-만약 마운트 해제가 잘 안된다면
-```bash
-sudo umount -l /xrootdfs
-```
-로 해제를 합니다. 
-
-2. xrootd, cmsd 서비스를 해제합니다.
-```bash
-sudo systemctl stop xrootd@myconf
-sudo systemctl stop cmsd@myconf
-```
-3. /mnt/disk01과 /mnt/disk02의 소유자를 변경합니다.
-```bash
-chown -R xrootd.xrootd /mnt/disk01
-chown -R xrootd.xrootd /mnt/disk02
-```
-xrootd의 쓰기 권한을 직접 점검하고 싶다면 다음과 같이 shell을 변경한 후 직접 접근합니다.
-```bash
-## xrootd 유저의 쉘을 /bin/bash로 변경
-sudo chsh xrootd
-/bin/bash
-sudo passwd xrootd 
-<xrootd 암호 설정>
-
-## xrootd 사용자로 변경 후 쓰기 확인
-su - xrootd
-cd /mnt/disk01
-touch a
-rm a
-exit
-
-## xrootd 사용자를 접속 불가로 변경
-suod chsh xrootd
-/sbin/nologin
-```
-4. /etc/xrootd 디렉토리로 이동하여 xrootd-multidisk.cfg 파일을 만듭니다. 
-```bash
-cd /etc/xrootd
-sudo cp xrootd-myconf.cfg xrootd-multidisk.cfg
-```
-5. 내용을 수정한 후 서비스를 기존 서비스를 중지한 후 multidisk 설정으로 서비스를 시작합니다.
-```bash
-sudo vim xrootd-multidisk.cfg
-sudo systemctl start cmsd@multidisk.service
-sudo systemctl start xrootd@multidisk.service
-```
-6. 기존 myconf 서비스를 해지하고 multidisk 서비스를 활성화합니다.
-```bash
-sudo systemctl disable cmsd@myconf.service
-sudo systemctl disable xrootd@myconf.service
-sudo systemctl enable cmsd@multidisk.service
-sudo systemctl enable xrootd@multidisk.service
-```
-</p>
-</details>
-
-
-
+## 실습 따라하기 : Chapter3부터는 제공되지 않습니다.
