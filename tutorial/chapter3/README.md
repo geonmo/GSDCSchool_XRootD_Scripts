@@ -60,7 +60,7 @@ getfattr -d 72E02F5D3ECC000000000a00140b000000000C6%
 # file: 72E02F5D3ECC000000000a00140b000000000C6%
 user.XrdFrm.Pfn="/data/o.dat"
 ```
-xrootd의 멀티 디스크 구조에서는 해당 파일의 경로를 user_xattr을 이용하여 기입하게 됩니다.
+xrootd의 멀티 디스크 구조에서는 파일 구조를 담은 디스크 파손시 복구를 위해 해당 파일의 경로를 user_xattr을 이용하여 저장하게 됩니다.
 
 불행히도 해당 기능은 몇몇 파일시스템에서만 지원이 되며 
 
@@ -77,45 +77,35 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 [geonmo@ui10 xrootd]$ getfattr -d noXattrOnXRootDFS.txt 
 [geonmo@ui10 xrootd]$ 
 ```
+저장될 공간 중 일부가 xattr 기능을 지원하지 않는다면 해당 디스크 공간에 쓰기를 시도할 때 에러가 발생합니다.
 
-
-
-
-
+이러한 문제를 피하기 위해 xattr 기능을 꺼두면 됩니다. 단, PFN 위치 저장이 불가능해집니다.
 
 
 ## 실습 준비 
-1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
-   * solution 디렉토리에 있는 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/tree/master/solution/chapter2)**) 파일을 실행하십시오.
-      * 한줄씩 직접 입력하고 싶은 분들을 위해 명령어를 보여드립니다.
-```bash
-sudo mkdir /blockdev
-cd /blockdev
-## 1GB짜리 2개의 파일 생성
-sudo dd if=/dev/zero of=dev01.img bs=1G count=1
-sudo dd if=/dev/zero of=dev02.img bs=1G count=1
+1. Chapter2 종료 후 환경을 기준으로 시작합니다.
 
-## 각 파일을 loopback 장치로 등록
-sudo losetup /dev/loop0 /blockdev/dev01.img
-sudo losetup /dev/loop1 /blockdev/dev02.img
 
-## xfs 파일시스템 구성 (윈도우의 포맷과 동일)
-sudo mkfs.xfs /dev/loop0
-sudo mkfs.xfs /dev/loop1
+### group0X-mn은 변경사항 없습니다.
 
-## 마운트할 디렉토리 생성
-sudo mkdir -p /mnt/disk01
-sudo mkdir -p /mnt/disk02
+### group0X-wn03 
+1. 기존 서비스를 모두 멈춥니다. (xrootd, cmsd)
+1. /mnt/disk01과 /mnt/disk02의 모든 파일을 삭제합니다. ( rm -rf /mnt/disk01 ; rm -rf /mnt/disk02 )
+1. /etc/xrootd/xrootd-standalone.cfg 파일을 xrootd-nas01.cfg와 xrootd-nas02.cfg로 복사합니다.
+1. xrootd-nas01.cfg의 all.export /tmp 를 all.export /로 변경합니다.
+1. xrootd-nas01.cfg 파일에 oss.localroot /mnt/disk01을 추가합니다.
+1. xrootd-nas01.cfg 파일에 xrd.port 1095를 추가합니다.
+1. xrootd-nas02.cfg의 all.export /tmp 를 all.export /로 변경합니다.
+1. xrootd-nas02.cfg 파일에 oss.localroot /mnt/disk02을 추가합니다.
+1. xrootd-nas02.cfg 파일에 xrd.port 1096를 추가합니다.
+1. xrootd@nas01 서비스와 xrootd@nas02 서비스를 시작합니다.
+1. xrdfs 명령어를 통해 서비스가 제대로 작동하는지 확인합니다.
 
-## 장치 파일들을 디렉토리에 마운트
-sudo mount -t xfs /dev/loop0 /mnt/disk01
-sudo mount -t xfs /dev/loop1 /mnt/disk02
-
-```
-2. 아래 명령어로 **/mnt/disk01**과 **/mnt/disk02**가 제대로 마운트가 되었는지 확인이 가능합니다.
-```bash
-df
-```
+### gropu0X-wn0{1,2}
+1. xrootd, cmsd 서비스를 중지합니다.
+1. wn03 디렉토리를 /cms/nas 디렉토리에 xrootdfs 명령어로 마운트 합니다.
+1. 기존 xrootd-multidisk.cfg 파일을 xrootd-mix.cfg로 복사합니다.
+1. xrootd-mix.cfg에 
 
 
 ## 주요 설정 파일 내용
@@ -126,14 +116,14 @@ set xrdr=group0X-mn
 all.manager $(xrdr) 3121
 all.role manager
 ```
-   * group0X-wn
+   * group0X-wn0{1,2}
 ```bash
-## 서버 루트 파일시스템을 이용
-## disk1 위에 파일시스템을 구축하려면 
-## oss.localroot /mnt/disk01 (data 디렉토리를 추가해야 함)
+
 oss.localroot /
 oss.space public /mnt/disk01
 oss.space public /mnt/disk02
+oss.space public /mnt/nas
+
 
 all.export /data
 set xrdr=group0X-mn
@@ -141,6 +131,10 @@ all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
 ```
+* group0X-wn03
+```bash
+
+
 
 ## 실습 
 1. 각 조별 인원들을 본인이 담당한 서버에 접속합니다.    
