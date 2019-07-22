@@ -43,6 +43,8 @@ sudo setfattr -n user.game_title -v "starcraft2" game.img
 
 ## 그리고 다음 명령어로 해당 내용을 확인할 수 있습니다.
 getfattr -d game.img
+
+## 출력 ##
 # file: game.img
 user.game_title="starcraft2"
 ```
