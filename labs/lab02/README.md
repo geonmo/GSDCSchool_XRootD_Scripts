@@ -9,6 +9,23 @@
 
 ## 데이터 설명
    * 데이터는 Python 모듈 중 하나인 [KoreaNewsCrawler](https://github.com/lumyjuwon/KoreaNewsCrawler)를 사용하여 네이버 자료들을 수집하였습니다.
-   * 해당 자료는 다음과 같은 특징을 가지고 있습니다.
+      * 크롤러의 특성상 시간이 많이 걸려 미리 준비된 자료를 사용하시면 됩니다.
+   * 데이터의 위치는 다음과 같습니다.
+   ```bash
+   root://cms-xrdr.sdfarm.kr:2096//
+   ```
+   * 다음 6개의 데이터 파일들을 참고하시기 바랍니다.
+   ```bash
+/Article_IT_science_201901_201907.csv
+/Article_economy_201901_201907.csv
+/Article_living_culture_201901_201907.csv
+/Article_opinion_201901_201907.csv
+/Article_politics_201901_201907.csv
+/Article_society_201901_201907.csv
+/Article_world_201901_201907.csv
+```
+   * 데이터에 대한 세부 내용은 위 링크를 참고해주시기 바랍니다.
+   
+
 
 
