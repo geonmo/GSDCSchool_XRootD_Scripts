@@ -60,6 +60,7 @@ fc-list | grep Nanum
 /home/gsdc/.fonts/NanumGothicCoding.ttf: NanumGothicCoding,나눔고딕코딩:style=Regular
 ```
 
+위 방법으로 설치된 폰트는 해당 사용자만 사용이 가능합니다. 전체 사용자가 사용하도록 설정하시려면 **/usr/share/fonts** 디렉토리를 사용하시기 바랍니다.
 
 
 
