@@ -87,6 +87,25 @@ cms.space min 200m 500m
 1. 기존 myconf 서비스를 비활성화하고 multidisk 서비스 활성화합니다.
 ## 실습 Self Check
 
+#### xrdcp 테스트
+Redirector로 데이터를 전송할 때 제대로 데이터가 전송되는지를 점검합니다.
+1. 임시 파일을 만듭니다.
+```bash 
+dd if=/dev/urandom of=$(uuidgen) bs=100M count=1
+ls -l
+```
+2. 생성된 파일을 MN 서버로 전송합니다.
+```bash
+xrdcp <파일이름> root://group0X-mn//data
+```
+3. 전송이 성공적으로 이루어졌는지 확인합니다.
+```bash
+xrdfs gropu0X-mn ls /data
+```
+4. 해당 파일이 어느 서버로 전송되었는지 확인합니다.
+```bash
+xrdfs group0X-mn locate /data/<filename>
+```
 
 #### XRootDFS 테스트
 1. 다음과 같이 xrootdfs를 마운트 합니다.
