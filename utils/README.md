@@ -8,6 +8,9 @@ git clone https://github.com/geonmo/GSDCSchool_XRootD_Scripts.git
 ## setup_xrootd.sh
 XRootD 서버 설치를 실패한 수강생 분들을 위해 스크립트를 지원해드립니다.
 
+## make_blkdev.sh
+이 프로그램은 Tutorial Chapter2에 사용됩니다. 파일 2개를 이용하여 가상의 디스크를 생성합니다.
+
 ## wordcounter.py
 
 인자로 네이버 뉴스 데이터를 입력 받습니다. 
@@ -28,3 +31,18 @@ XRootD 서버 설치를 실패한 수강생 분들을 위해 스크립트를 지
 20190731,데일리안,필리핀,3
 20190731,데일리안,글로벌,3
 ```
+다음과 같이 사용하여 파일로 작성하도록 합시다.
+```bash
+./wordcounter.py Article_economy_201901_201907.csv > output.csv
+```
+
+
+## loadOutput.py
+이 프로그램은 wordcounter.py의 결과물을 이용하여 데이터 중 일부를 추출하여 그림으로 그려주는 프로그램입니다.
+
+플롯을 보는 프로그램이기 때문에 단독 실행하지 않고 python -i 명령어로 창을 띄워서 확인하시기 바랍니다.
+```bash
+python -i loadOutput.py
+```
+
+
