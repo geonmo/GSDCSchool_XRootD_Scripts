@@ -79,6 +79,7 @@ fc-list | grep Nanum
    * wordcounter.py를 통해 출력된 결과물을 그대로 저장한 후 loadOuput.py로 이를 그림으로 보실 수 있습니다.
       * 해당 프로그램은 python Pandas를 통해 데이터를 분석합니다. 
          * 폰트 설정 등이 포함되어 있으며 groupby를 통한 데이터 선택과 그래프화하는 간단한 코드입니다. 참고용으로 보시면 됩니다.
+<img width="559" alt="figure_economy" src="https://user-images.githubusercontent.com/4969463/61925863-14836500-afa9-11e9-85f1-1d995b33f413.PNG">
       
 
 ## Lab 개요
