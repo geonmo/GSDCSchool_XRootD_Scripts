@@ -65,8 +65,10 @@ fc-list | grep Nanum
 그림 등의 그래픽적인 요소를 사용하기 위해서는 X-Windows 설정이 필요합니다.
 
 다음 링크를 참고하여 X-Windows 환경 구축을 해주시기 바랍니다.
-[윈도우 환경에서의 xming 설정](https://m.blog.naver.com/PostView.nhn?blogId=monocho&logNo=221114374493&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
-[OSX 환경을 위한 XQuartz](https://www.xquartz.org/)
+
+   * [윈도우 환경에서의 xming 설정](https://m.blog.naver.com/PostView.nhn?blogId=monocho&logNo=221114374493&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+   * [OSX 환경을 위한 XQuartz](https://www.xquartz.org/)
+   * 리눅스 노트북은 별도 설정이 필요 없습니다.
 
 또한, 반드시 ssh 접속을 하실 때 -Y 옵션을 추가하시기 바랍니다. (로컬 -> gcloud 뿐만 아니라 gcloud->mn or wn 접속 시에도)
 
