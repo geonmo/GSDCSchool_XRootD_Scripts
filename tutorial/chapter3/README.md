@@ -88,8 +88,6 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 
 이러한 문제를 피하기 위해 xattr 기능을 꺼두면 됩니다. 단, PFN 위치 저장이 불가능해집니다.
 
-
-
 ## 실습 준비
    * Chapter2 종료 후 환경을 기준으로 시작합니다.
 
@@ -108,12 +106,13 @@ all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
 ```
-* group0X-wn03
+* group0X-wn03 
 ```bash
 ### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
 all.export /
 oss.localroot /mnt/disk01
-xrd.port 1095
+### nas02는 아래 포트 번호만 다릅니다.
+xrd.port 1095  
 ```
 
 ## 실습 
@@ -140,7 +139,7 @@ xrd.port 1095
 ### gropu0X-wn0{1,2}
 1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
 1. xrootd, cmsd 서비스를 중지합니다.
-1. /cms/nas 디렉토리에 group0X-wn03:1095와 gropu0X-wn03:1096을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
+1. /cms/nas 디렉토리에 group0X-wn03:1095(on wn01)와 gropu0X-wn03:1096(on wn02)을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
 1. 기존 xrootd-multidisk.cfg 파일을 xrootd-mix.cfg로 복사합니다.
 1. xrootd-mix.cfg에 oss.space public /mnt/nas를 추가합니다.
 1. xrootd-mix.cfg에 all.export /data 를 all.export /data noxattrs로 변경합니다. (noxattrs 추가)
@@ -161,7 +160,7 @@ sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ls /xrootd_group0X-wn0Y
 ls /xrootdfs
 ```
-3. /xrootd_group0X-wn0Y 디렉토리는 2GB정도로 표시되어야 합니다. 다음 명령어로 확인할 수 있습니다.
+3. /xrootd_group0X-wn0Y 디렉토리는 3GB로 표시되어야 합니다.(디스크 2GB + XRootDFS 1GB) 다음 명령어로 확인할 수 있습니다.
 ```bash
 df -h
 ```
