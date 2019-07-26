@@ -71,7 +71,9 @@ xrootd의 멀티 디스크 구조에서는 파일 구조를 담은 디스크 파
 
 nfs나 xrootdfs 같은 NAS에서는 대개 지원되지 않습니다. (표준안은 제출되었습니다.)
 
-해당 기능을 아래와 같이 테스트해 볼 수 있습니다.
+해당 기능을 아래와 같이 테스트해 볼 수 있습니다. 
+
+   * NFS 마운트 실습은 교육 내용에서 제외되어 있으니 참고만 하시기 바랍니다.
 ```bash
 ## On NFS, it is not working.
 [geonmo@ui10 ~]$ setfattr -n hello -v world noXattrOnNAS.txt 
@@ -111,10 +113,7 @@ cms.space min 200m 500m
 ### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
 all.export /
 oss.localroot /mnt/disk01
-all.adminpath /var/spool/xrootd
-all.pidpath /var/run/xrootd
 xrd.port 1095
-continue /etc/xrootd/config.d/
 ```
 
 ## 실습 
@@ -174,7 +173,8 @@ df -h
 ## (선택사항) oss.space 대신 oss.cache 를 이용하여 디스크를 구성하면 어떠한 차이가 발생하는지 확인해봅시다.
    
 ## 주의사항
-   *    
+   * Chapter1에서도 설명하였지만 /var/run/xrootd, /var/log/xrootd의 권한(혹은 소유주)가 xrootd인지를 확인하시기 바랍니다.
+   * 부득이하게 NAS를 XRootDFS로 대체하여 실습을 하였습니다. NFS로 테스트를 하면 아예 파일이 저장되지 않는 현상을 볼 수 있습니다.
 
 ```bash
 ### xrootd 포트번호 변경
