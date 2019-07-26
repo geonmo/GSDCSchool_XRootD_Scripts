@@ -61,6 +61,15 @@ fc-list | grep Nanum
 ```
 
 위 방법으로 설치된 폰트는 해당 사용자만 사용이 가능합니다. 전체 사용자가 사용하도록 설정하시려면 **/usr/share/fonts** 디렉토리를 사용하시기 바랍니다.
+#### 그래픽 환경 구성
+그림 등의 그래픽적인 요소를 사용하기 위해서는 X-Windows 설정이 필요합니다.
+
+다음 링크를 참고하여 X-Windows 환경 구축을 해주시기 바랍니다.
+[윈도우 환경에서의 xming 설정](https://m.blog.naver.com/PostView.nhn?blogId=monocho&logNo=221114374493&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+[OSX 환경을 위한 XQuartz](https://www.xquartz.org/)
+
+또한, 반드시 ssh 접속을 하실 때 -Y 옵션을 추가하시기 바랍니다. (로컬 -> gcloud 뿐만 아니라 gcloud->mn or wn 접속 시에도)
+
 
 ## Lab 관련 기본사항 전달
    * 데이터 파일은 150MB~1.6GB까지 다양한 크기의 파일 6개로 구성되어 있습니다.
@@ -68,7 +77,8 @@ fc-list | grep Nanum
    * 해당 파일들을 1차 가공하기 위한 간단한 스크립트인[wordcounter.py](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/blob/master/utils/wordcounter.py)를 제공해드립니다. 
       * 해당 스크립트를 통해 뉴스별(드린 데이터의 1줄이 1개의 뉴스기사)로 주요 단어들을 확인하실 수 있습니다.
    * wordcounter.py를 통해 출력된 결과물을 그대로 저장한 후 loadOuput.py로 이를 그림으로 보실 수 있습니다.
-      * 해당 프로그램은 python Pandas를 통해 데이터를 분석합니다. 가장 간단한 분석방법은 코드를 살펴보시기 바랍니다.
+      * 해당 프로그램은 python Pandas를 통해 데이터를 분석합니다. 
+         * 폰트 설정 등이 포함되어 있으며 groupby를 통한 데이터 선택과 그래프화하는 간단한 코드입니다. 참고용으로 보시면 됩니다.
       
 
 ## Lab 개요
