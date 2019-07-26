@@ -24,5 +24,10 @@ data.head()
 dg =data.groupby(["keyword"]).agg({"count":sum})
 dg_sort = dg.sort_values(['count'],ascending=False)
 
-data.plot(x="keyword",y="count")
+dgg = dg_sort.reset_index()
+
+print("주요 키워드?")
+print(dgg.head(20))
+
+dgg[:20].plot(x="keyword",y="count")
 plt.show()
