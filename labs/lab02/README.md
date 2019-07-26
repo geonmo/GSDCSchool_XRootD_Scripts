@@ -30,7 +30,7 @@
 모든 머신들에 python 분석 툴을 이용하여 가장 간단한 가공 작업을 진행하고자 합니다.
 다음 명령어를 따라 입력해주십시오.
 ```bash
-sudo yum install -y numpy python-pandas
+sudo yum install -y numpy python-pandas python-matplotlib
 ```
 
 
