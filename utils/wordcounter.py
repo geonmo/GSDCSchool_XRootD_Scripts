@@ -26,6 +26,7 @@ class WordCounter:
                 self.words_total_sum[word] = 1
             """
     def printCounter(self,minCount=2 ):
+        ## minCount 보다 높은 빈도 수만 저장하여 새로운 dictionary 변수를 만듭니다.
         new_dict = dict( (k,v) for (k,v) in self.words_dict.iteritems() if v> minCount)
         sorted_words = sorted(new_dict.items(), key=operator.itemgetter(1))
         sorted_words.reverse()
