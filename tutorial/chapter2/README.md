@@ -87,6 +87,25 @@ cms.space min 200m 500m
 1. 기존 myconf 서비스를 비활성화하고 multidisk 서비스 활성화합니다.
 ## 실습 Self Check
 
+#### xrdcp 테스트
+Redirector로 데이터를 전송할 때 제대로 데이터가 전송되는지를 점검합니다.
+1. 임시 파일을 만듭니다.
+```bash 
+dd if=/dev/urandom of=$(uuidgen) bs=100M count=1
+ls -l
+```
+2. 생성된 파일을 MN 서버로 전송합니다.
+```bash
+xrdcp <파일이름> root://group0X-mn//data
+```
+3. 전송이 성공적으로 이루어졌는지 확인합니다.
+```bash
+xrdfs gropu0X-mn ls /data
+```
+4. 해당 파일이 어느 서버로 전송되었는지 확인합니다.
+```bash
+xrdfs group0X-mn locate /data/<filename>
+```
 
 #### XRootDFS 테스트
 1. 다음과 같이 xrootdfs를 마운트 합니다.
@@ -111,6 +130,9 @@ df -h
    * localroot 디스크가 손상이 된다면 데이터들은 어떻게 될까요?
 
 ## 주의사항
+   * 아래 **실습 따라하기**를 보지 않고 작업을 처리할 수 있으면 먼저 시도해보시기 바랍니다.
+   * 간혹 가다가 loopback 장치(loop0, loop1)이 사용중으로 나올 수가 있습니다. 번호를 증가시켜서 시도해보시기 바랍니다. 
+      * 실제로는 작업을 진행하려고 하면 자동으로 해제되어 사용이 가능해지긴 합니다.
    * 설정 파일의 주석은 샵 기호(\#)로 할 수 있습니다.   
    * MN 서버의 xrootd, cmsd 서비스를 너무 일찍 끄면 WN에 마운트되어 있는 /xrootdfs 디렉토리가 마운트 해제가 되지 않습니다. 되도록 MN의 서비스를 가장 마지막에 끄도록 합니다.
    * (선택사항) MN 서버 담당자는 해당 테스트를 실습하기 위해 다음 절차를 따르십시오.

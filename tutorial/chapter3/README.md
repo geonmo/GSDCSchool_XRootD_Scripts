@@ -71,7 +71,9 @@ xrootd의 멀티 디스크 구조에서는 파일 구조를 담은 디스크 파
 
 nfs나 xrootdfs 같은 NAS에서는 대개 지원되지 않습니다. (표준안은 제출되었습니다.)
 
-해당 기능을 아래와 같이 테스트해 볼 수 있습니다.
+해당 기능을 아래와 같이 테스트해 볼 수 있습니다. 
+
+   * NFS 마운트 실습은 교육 내용에서 제외되어 있으니 참고만 하시기 바랍니다.
 ```bash
 ## On NFS, it is not working.
 [geonmo@ui10 ~]$ setfattr -n hello -v world noXattrOnNAS.txt 
@@ -85,8 +87,6 @@ setfattr: noXattrOnNAS.txt: Operation not supported
 저장될 공간 중 일부가 xattr 기능을 지원하지 않는다면 해당 디스크 공간에 쓰기를 시도할 때 에러가 발생합니다.
 
 이러한 문제를 피하기 위해 xattr 기능을 꺼두면 됩니다. 단, PFN 위치 저장이 불가능해집니다.
-
-
 
 ## 실습 준비
    * Chapter2 종료 후 환경을 기준으로 시작합니다.
@@ -106,15 +106,13 @@ all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
 ```
-* group0X-wn03
+* group0X-wn03 
 ```bash
 ### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
 all.export /
 oss.localroot /mnt/disk01
-all.adminpath /var/spool/xrootd
-all.pidpath /var/run/xrootd
-xrd.port 1095
-continue /etc/xrootd/config.d/
+### nas02는 아래 포트 번호만 다릅니다.
+xrd.port 1095  
 ```
 
 ## 실습 
@@ -141,7 +139,7 @@ continue /etc/xrootd/config.d/
 ### gropu0X-wn0{1,2}
 1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
 1. xrootd, cmsd 서비스를 중지합니다.
-1. /cms/nas 디렉토리에 group0X-wn03:1095와 gropu0X-wn03:1096을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
+1. /cms/nas 디렉토리에 group0X-wn03:1095(on wn01)와 gropu0X-wn03:1096(on wn02)을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
 1. 기존 xrootd-multidisk.cfg 파일을 xrootd-mix.cfg로 복사합니다.
 1. xrootd-mix.cfg에 oss.space public /mnt/nas를 추가합니다.
 1. xrootd-mix.cfg에 all.export /data 를 all.export /data noxattrs로 변경합니다. (noxattrs 추가)
@@ -162,7 +160,7 @@ sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ls /xrootd_group0X-wn0Y
 ls /xrootdfs
 ```
-3. /xrootd_group0X-wn0Y 디렉토리는 2GB정도로 표시되어야 합니다. 다음 명령어로 확인할 수 있습니다.
+3. /xrootd_group0X-wn0Y 디렉토리는 3GB로 표시되어야 합니다.(디스크 2GB + XRootDFS 1GB) 다음 명령어로 확인할 수 있습니다.
 ```bash
 df -h
 ```
@@ -174,7 +172,8 @@ df -h
 ## (선택사항) oss.space 대신 oss.cache 를 이용하여 디스크를 구성하면 어떠한 차이가 발생하는지 확인해봅시다.
    
 ## 주의사항
-   *    
+   * Chapter1에서도 설명하였지만 /var/run/xrootd, /var/log/xrootd의 권한(혹은 소유주)가 xrootd인지를 확인하시기 바랍니다.
+   * 부득이하게 XRootDFS로만 실습을 하였습니다. xattr 옵션이 켜진 상태로 nfs상에서 테스트를 진행하면 0바이트 파일이 생성이 되고 실제로는 disk 디렉토리에만 파일이 저장됩니다.
 
 ```bash
 ### xrootd 포트번호 변경
