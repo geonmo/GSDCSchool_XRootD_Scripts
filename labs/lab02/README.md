@@ -27,10 +27,40 @@
    * 데이터에 대한 세부 내용은 위 링크를 참고해주시기 바랍니다.
    
 ## 환경설정
-모든 머신들에 python 분석 툴을 이용하여 가장 간단한 가공 작업을 진행하고자 합니다.
+
+#### 1. 패키지 설치
+모든 머신들에 python 분석 툴을 이용하여 간단한 분석 작업 프로그램을 설치합니다.
 다음 명령어를 따라 입력해주십시오.
 ```bash
 sudo yum install -y numpy python-pandas python-matplotlib
 ```
+#### 2. 한글 폰트 설치
+네이버 뉴스는 한글 뉴스들이기 때문에 최종적으로 그림을 그릴 때에는 한글 폰트가 필요합니다.
+
+따라서, 모든 머신들에 다음과 같은 명령어로 한글 폰트를 설치하여 주시기 바랍니다.
+
+여기서 사용하는 폰트는 [네이버 나눔고딕코딩 글꼴](https://github.com/naver/nanumfont)입니다.
+
+자세한 설명은 해당 홈페이지를 참조바랍니다.
+
+```bash
+cd /tmp
+wget https://github.com/naver/nanumfont/releases/download/VER2.5/NanumGothicCoding-2.5.zip
+unzip NanumGothicCoding-2.5.zip
+mkdir ~/.fonts
+cp NanumGothicCoding*.ttf ~/.fonts
+fc-cache -f -v
+```
+설치 후 다음 명령어로 폰트가 잘 설치되어 있는지 확인 바랍니다.
+```bash
+fc-list | grep Nanum
+
+## 출력 ## 
+/home/gsdc/.fonts/NanumGothicCoding-Bold.ttf: NanumGothicCoding,나눔고딕코딩:style=Bold
+/home/gsdc/.fonts/NanumGothicCoding.ttf: NanumGothicCoding,나눔고딕코딩:style=Regular
+```
+
+
+
 
 
