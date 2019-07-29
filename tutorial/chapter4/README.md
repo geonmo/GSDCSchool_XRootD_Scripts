@@ -31,7 +31,7 @@
 ### 아래 IP 주소는 꼭 확인을 해주시기 바랍니다.
 set xrdr=10.0.20.10  
 all.role manager
-
+all.export /data
 xrd.port 1094
 all.manager $(xrdr):3122
 
