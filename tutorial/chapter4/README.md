@@ -27,10 +27,12 @@
 #### group0X-wn0{1,2}
 ```bash
 ### IP 10.0.20.13로부터 1094/tcp, 3122/tcp 차단
+### 해제는 add-rich-rule 대신 remove-rich-rule을 넣으면 됩니다.
 sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.0.20.13/32" port port="1094" protocol="tcp" reject'
 sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.0.20.13/32" port port="3121" protocol="tcp" reject'
 sudo firewall-cmd --reload
 ````
+
 #### 체크 방법 : group0X-wn03에서 다음 명령어로 차단 여부 확인 가능
 ```bash
 sudo yum install -y nmap
