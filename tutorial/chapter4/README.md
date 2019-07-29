@@ -41,7 +41,8 @@ xrd.network nokeepalive nodnr norpipa routes split use eth0
 #### (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
 ```bash
 ### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
-all.export /xrootdfs readonly
+all.export / readonly
+oss.localroot /xrootdfs
 xrd.port 1095  
 ```
 
