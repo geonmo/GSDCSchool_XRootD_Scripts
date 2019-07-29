@@ -82,23 +82,13 @@ xrd.network nokeepalive nodnr norpipa routes split use eth0
 
 
 #### xrdfs 테스트
-1. wn03에서 mn을 통해 xrdfs가 작동하면 정상적으로 사용이 가능합니다.
+1. wn03에서 mn을 통해 xrdfs가 작동하면 성공적으로 서비스를 실행한 것입니다.
 
 
 ## 토의
-   * 디스크와 NAS를 섞어 쓸 경우 문제점이 무엇인가요?
-   * 만약 네트워크 파일시스템을 섞어 쓸 경우 어떤 식으로 구성하면 이러한 문제를 해결할 수 있을까요? 
-   
-## (선택사항) oss.space 대신 oss.cache 를 이용하여 디스크를 구성하면 어떠한 차이가 발생하는지 확인해봅시다.
+  
    
 ## 주의사항
-   * Chapter1에서도 설명하였지만 /var/run/xrootd, /var/log/xrootd의 권한(혹은 소유주)가 xrootd인지를 확인하시기 바랍니다.
-   * 부득이하게 XRootDFS로만 실습을 하였습니다. xattr 옵션이 켜진 상태로 nfs상에서 테스트를 진행하면 0바이트 파일이 생성이 되고 실제로는 disk 디렉토리에만 파일이 저장됩니다.
-
-```bash
-### xrootd 포트번호 변경
-xrd.port 1096
-```
  
 ------------
 ## 실습 따라하기 : Chapter3부터는 제공되지 않습니다.
