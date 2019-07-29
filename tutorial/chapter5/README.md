@@ -15,6 +15,10 @@
    * 이 실습은 구성된 XRootD를 통해 각 유저분들이 직접 데이터를 사용해보는 실습입니다. 
    * Chapter1 상태를 기본으로 합니다.
    * 기존 설정으로 복원 후 사용하시기 바랍니다.
+   * 다음 명령어로 xrootd-python bind 패키지를 설치합니다.
+```bash
+yum install -y xrootd-python
+```
    
 ## 실습 따라하기 
 1. [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
