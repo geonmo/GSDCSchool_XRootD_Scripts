@@ -35,7 +35,9 @@ all.role manager
 xrd.port 1094
 all.manager $(xrdr):3122
 
-### 아래 설정은 내부 연결이 공인 IP로 구성되어 있지 않을 때 반드시 설정해야 합니다.
+### nodnr: DNS 이름 풀이를 하지 않습니다. MN 혹은 WN들이 DNS에 등록되어 있지 않다면 반드시 nodnr를 지정해야 합니다.
+### split use eth0: 공인IP와 사설IP를 동시에 쓸 경우 어느 네트워크 장치를 통해 XRootD 서비스를 실행할지를 선택해야 합니다.
+#### 자세한 설명은 XRootD 설명을 보십시오. 
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 ```
 #### (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
@@ -53,7 +55,9 @@ set xrdr=10.0.20.10
 all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
-### 아래 설정은 내부 연결이 공인 IP로 구성되어 있지 않을 때 반드시 설정해야 합니다.
+### nodnr: DNS 이름 풀이를 하지 않습니다. MN 혹은 WN들이 DNS에 등록되어 있지 않다면 반드시 nodnr를 지정해야 합니다.
+### split use eth0: 공인IP와 사설IP를 동시에 쓸 경우 어느 네트워크 장치를 통해 XRootD 서비스를 실행할지를 선택해야 합니다.
+#### 자세한 설명은 XRootD 설명을 보십시오. 
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 
 ```
