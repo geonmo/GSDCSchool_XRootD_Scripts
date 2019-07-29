@@ -110,8 +110,8 @@ xrd.network nodnr norpipa routes split use eth0
 ### group0X-wn03 
 1. 기존 마운트된 디렉토리들과 서비스들을 종료합니다.
 1. mn과 wn01,02 서버들이 설정이 완료된 후 테스트를 진행합니다.
-1. 1094포트를 사용하여 접근을 시도합니다.
-1. 1095포트를 사용하여 접근을 시도합니다.
+1. 1094포트를 사용하여 접근을 시도합니다. ( xrdfs group09-mn:1094 ls /data)
+1. 1095포트를 사용하여 접근을 시도합니다. ( xrdfs group09-mn:1095 ls / )
 
 
 ### gropu0X-wn0{1,2}
