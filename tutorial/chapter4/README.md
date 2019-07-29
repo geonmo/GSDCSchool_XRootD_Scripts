@@ -26,7 +26,7 @@
    
 ## 주요 설정 파일 내용
    * group0X-mn 
-#### (1) 내부 네트워크용 설정파일
+      * (1) 내부 네트워크용 설정파일
 ```bash
 ### 아래 IP 주소는 꼭 확인을 해주시기 바랍니다.
 set xrdr=10.0.20.10  
@@ -40,7 +40,7 @@ all.manager $(xrdr):3122
 #### 자세한 설명은 XRootD 설명을 보십시오. 
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 ```
-#### (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
+      * (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
 ```bash
 ### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
 all.export / readonly
