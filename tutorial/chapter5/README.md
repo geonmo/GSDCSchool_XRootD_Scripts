@@ -17,7 +17,7 @@
    * 기존 설정으로 복원 후 사용하시기 바랍니다.
    * 다음 명령어로 xrootd-python bind 패키지를 설치합니다.
 ```bash
-yum install -y xrootd-python
+sudo yum install -y xrootd-python
 ```
    
 ## 실습 따라하기 
