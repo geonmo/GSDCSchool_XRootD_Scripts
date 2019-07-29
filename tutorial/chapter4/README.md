@@ -33,7 +33,7 @@ sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address
 sudo firewall-cmd --reload
 ````
 
-#### 체크 방법 : group0X-wn03에서 다음 명령어로 차단 여부 확인 가능
+#### 체크 방법 : group0X-wn03에서 다음 명령어로 차단 여부 확인 
 ```bash
 sudo yum install -y nmap
 sudo nmap -PN 10.0.??.?? -p 1094
@@ -99,11 +99,14 @@ xrd.network nokeepalive nodnr norpipa routes split use eth0
 ## 실습 
 
 ### group0X-mn
-1. 기존 서비스들(xrootd, cmsd)을 종료합니다. 
-
+1. 기존 마운트된 디렉토리들(/xrootdfs)과 서비스들(xrootd, cmsd) 종료합니다. 
+1. xrootd-myconf.cfg 파일을 xrootd-chap4.cfg로 복사한 후 해당 내용을 위 설정 내용을 참고하여 수정합니다.
+1. xrootd-standalone.cfg 파일을 참고하여 xrootd-pubic.cfg로 복사한 후 위 내용을 참고하여 수정합니다.
+1. 먼저 chap4 서비스가 정상적으로 시작되는지 확인한 후 /xrootdfs 디렉토리에 xrootdfs 를 이용하여 마운트합니다.
+1. 마운트가 된 후 public 서비스를 시작합니다. public은 xrootd 서비스만 올리면 됩니다.
 
 ### group0X-wn03 
-1. 기존 마운트된 파일시스템들과 서비스들을 종료합니다.
+1. 기존 마운트된 디렉토리들과 서비스들을 종료합니다.
 
 
 ### gropu0X-wn0{1,2}
