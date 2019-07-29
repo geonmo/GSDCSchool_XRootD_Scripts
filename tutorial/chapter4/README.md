@@ -22,19 +22,50 @@
 ## 사전 지식
 
 ## 실습 준비
-   * Chapter1 상태를 기본으로 합니다만, mn을 통해 wn01, wn02가 통신이 가능하다면 어떠한 환경이라도 상관 없습니다.
-   
+   * 외부 XRootD 클라이언트 역할을 수행하는 wn03은 wn01,wn02 로부터 직접 접근이 불가능해야 합니다. 
+   * 가상으로 방화벽을 이용해 wn03의 접속을 막을 수 있습니다.
+#### group0X-wn0{1,2}
+```bash
+### IP 10.0.20.13로부터 1094/tcp, 3122/tcp 차단
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.0.20.13/32" port port="1094" protocol="tcp" reject'
+sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="10.0.20.13/32" port port="3121" protocol="tcp" reject'
+sudo firewall-cmd --reload
+````
+#### 체크 방법 : group0X-wn03에서 다음 명령어로 차단 여부 확인 가능
+```bash
+sudo yum install -y nmap
+sudo nmap -PN 10.0.??.?? -p 1094
+## 정상 연결 ##
+Starting Nmap 6.40 ( http://nmap.org ) at 2019-07-29 04:36 PDT
+Nmap scan report for group0X-wn0Y.gZ.gsdc.org (10.0.??.??)
+Host is up (0.0018s latency).
+PORT     STATE SERVICE
+1094/tcp open  rootd
+## 방화벽 설정 ##
+Starting Nmap 6.40 ( http://nmap.org ) at 2019-07-29 04:37 PDT
+Nmap scan report for group09-wn0Y.gZ.gsdc.org (10.0.??.??)
+Host is up (0.0015s latency).
+PORT     STATE    SERVICE
+1094/tcp filtered unknown
+## 서비스가 꺼져있을 때 ##
+Starting Nmap 6.40 ( http://nmap.org ) at 2019-07-29 04:37 PDT
+Nmap scan report for group09-wn0Y.gZ.gsdc.org (10.0.??.??)
+Host is up (0.0015s latency).
+PORT     STATE    SERVICE
+1094/tcp closed unknown
+```
+
 ## 주요 설정 파일 내용
    * group0X-mn 
    * (1) 내부 네트워크용 설정파일
 ```bash
 ### 아래 IP 주소는 꼭 확인을 해주시기 바랍니다.
-set xrdr=10.0.20.10  
-all.role manager
-all.export /data
-xrd.port 1094
-all.manager $(xrdr):3122
 
+all.export /data
+set xrdr=10.0.20.10 
+xrd.port 1094
+all.manager $(xrdr):3121
+all.role manager
 ### nodnr: DNS 이름 풀이를 하지 않습니다. MN 혹은 WN들이 DNS에 등록되어 있지 않다면 반드시 nodnr를 지정해야 합니다.
 ### split use eth0: 공인IP와 사설IP를 동시에 쓸 경우 어느 네트워크 장치를 통해 XRootD 서비스를 실행할지를 선택해야 합니다.
 #### 자세한 설명은 XRootD 설명을 보십시오. 
