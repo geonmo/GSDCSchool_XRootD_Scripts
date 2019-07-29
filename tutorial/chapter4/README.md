@@ -58,8 +58,8 @@ PORT     STATE    SERVICE
 ```
 
 ## 주요 설정 파일 내용
-   * group0X-mn 
-   * (1) 내부 네트워크용 설정파일
+### group0X-mn 
+#### (1) 내부 네트워크용 설정파일
 ```bash
 ### 아래 IP 주소는 꼭 확인을 해주시기 바랍니다.
 
@@ -81,7 +81,7 @@ oss.localroot /xrootdfs
 xrd.port 1095  
 ```
 
-   * group0X-wn0{1,2}
+### group0X-wn0{1,2}
 ```bash
 all.export /data 
 set xrdr=10.0.20.10
@@ -94,7 +94,7 @@ cms.space min 200m 500m
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 
 ```
-* group0X-wn03 : 클라이언트는 설정 내용이 없습니다.
+### group0X-wn03 : 클라이언트는 설정 내용이 없습니다.
 
 ## 실습 
 
