@@ -70,9 +70,8 @@ all.manager $(xrdr):3121
 all.role manager
 ### nodnr, norpipa: DNS 이름 풀이를 하지 않습니다. MN 혹은 WN들이 DNS에 등록되어 있지 않다면 반드시 nodnr,norpipa를 지정해야 합니다.
 ### routes split use eth0: 공인IP와 사설IP를 동시에 쓸 경우 어느 네트워크 장치를 통해 XRootD 서비스를 실행할지를 선택해야 합니다.
-#### 여기서는 NIC 장치가 1개이기 때문에 작동하지 않습니다.
 ### 자세한 설명은 XRootD 설명을 보십시오. 
-xrd.network nodnr norpipa #routes split use eth0 
+xrd.network nodnr norpipa routes split use eth0 
 ```
    * (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
 ```bash
@@ -91,9 +90,8 @@ all.role server
 cms.space min 200m 500m
 ### nodnr, norpipa: DNS 이름 풀이를 하지 않습니다. MN 혹은 WN들이 DNS에 등록되어 있지 않다면 반드시 nodnr,norpipa를 지정해야 합니다.
 ### routes split use eth0: 공인IP와 사설IP를 동시에 쓸 경우 어느 네트워크 장치를 통해 XRootD 서비스를 실행할지를 선택해야 합니다.
-#### 여기서는 NIC 장치가 1개이기 때문에 작동하지 않습니다.
 ### 자세한 설명은 XRootD 설명을 보십시오. 
-xrd.network nodnr norpipa #routes split use eth0 
+xrd.network nodnr norpipa routes split use eth0 
 ```
 ### group0X-wn03 : 클라이언트는 설정 내용이 없습니다.
 
