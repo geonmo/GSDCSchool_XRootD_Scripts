@@ -17,6 +17,7 @@
    *  group0X-mn : MN 서버는 XRootD의 Redirector로 활용합니다.
    *  group0X-wn01,02 : XRootD의 Server로 활용합니다.
    *  group0X-wn03 : XRootD 클라이언트로 활용합니다.
+![tutorial4](https://user-images.githubusercontent.com/4969463/62031449-5ec34b00-b222-11e9-8e70-ea07fbaf8418.png)
 
 ## 사전 지식
 
