@@ -42,29 +42,17 @@ cms.space min 200m 500m
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 
 ```
-* group0X-wn03 : 클라이언트는 설정 내용이 없습니다. 모든 xrootd, cmsd 서비스를 종료하세요.
+* group0X-wn03 : 클라이언트는 설정 내용이 없습니다.
 
 ## 실습 
 
 ### group0X-mn
 1. 기존 서비스들(xrootd, cmsd)을 종료합니다. 
 
-### group0X-wn03 (Standalone 모드로 실행합니다. cmsd 서비스가 필요 없습니다.)
-1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
-1. 기존 서비스를 모두 멈춥니다. (xrootd, cmsd)
-1. /mnt/disk01과 /mnt/disk02의 모든 파일을 삭제합니다. ( rm -rf /mnt/disk01 ; rm -rf /mnt/disk02 )
-1. 두 디렉토리에 /data 디렉토리를 만들고 사용자와 그룹을 xrootd로 변경합니다.
-1. /etc/xrootd/xrootd-standalone.cfg 파일을 xrootd-nas01.cfg와 xrootd-nas02.cfg로 복사합니다.
-1. xrootd-nas01.cfg의 all.export /tmp 를 all.export /로 변경합니다.
-1. xrootd-nas01.cfg 파일에 oss.localroot /mnt/disk01을 추가합니다.
-1. xrootd-nas01.cfg 파일에 xrd.port 1095를 추가합니다.
-1. xrootd-nas02.cfg의 all.export /tmp 를 all.export /로 변경합니다.
-1. xrootd-nas02.cfg 파일에 oss.localroot /mnt/disk02을 추가합니다.
-1. xrootd-nas02.cfg 파일에 xrd.port 1096를 추가합니다.
-1. xrootd@nas01 서비스와 xrootd@nas02 서비스를 시작합니다.
-1. xrdfs 명령어를 통해 서비스가 제대로 작동하는지 확인합니다.
-1. 방화벽에서 외부에서 1095/tcp, 1096/tcp 포트 접근을 허용합니다.
-1. gropu09-wn01, 02에서 xrdfs로 접근이 가능한지를 점검합니다.
+
+### group0X-wn03 
+1. 기존 마운트된 파일시스템들과 서비스들을 종료합니다.
+
 
 ### gropu0X-wn0{1,2}
 1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
