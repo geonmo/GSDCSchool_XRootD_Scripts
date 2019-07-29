@@ -17,7 +17,8 @@
    * 기존 설정으로 복원 후 사용하시기 바랍니다.
    
 ## 실습 따라하기 
-1.
+1. [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
+2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
 
 
 
