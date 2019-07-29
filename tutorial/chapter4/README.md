@@ -80,6 +80,7 @@ all.export / readonly
 oss.localroot /xrootdfs
 xrd.port 1095  
 ```
+   * 단, standalone 경로는 경로명이 달라지기 때문에 부득이하게 /xrootdfs 를 localroot로 지정합니다.
 
 ### group0X-wn0{1,2}
 ```bash
