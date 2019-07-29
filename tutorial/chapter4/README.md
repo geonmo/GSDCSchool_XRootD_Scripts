@@ -100,25 +100,30 @@ xrd.network nodnr norpipa routes split use eth0
 
 ### group0X-mn
 1. 기존 마운트된 디렉토리들(/xrootdfs)과 서비스들(xrootd, cmsd) 종료합니다. 
-1. xrootd-myconf.cfg 파일을 xrootd-chap4.cfg로 복사한 후 해당 내용을 위 설정 내용을 참고하여 수정합니다.
+1. xrootd-myconf.cfg 파일을 xrootd-chap4.cfg로 복사한 후 내용을 위 설정을 참고하여 수정합니다.
 1. xrootd-standalone.cfg 파일을 참고하여 xrootd-pubic.cfg로 복사한 후 위 내용을 참고하여 수정합니다.
-1. 먼저 chap4 서비스가 정상적으로 시작되는지 확인한 후 /xrootdfs 디렉토리에 xrootdfs 를 이용하여 마운트합니다.
-1. 마운트가 된 후 public 서비스를 시작합니다. public은 xrootd 서비스만 올리면 됩니다.
+1. 먼저 chap4 서비스가 정상적으로 시작되는지 확인한 후 /xrootdfs 디렉토리에 xrootdfs 를 이용하여 fuse로 마운트합니다.
+1. public 서비스를 위한 포트 1095/tcp 를 허용해줍니다.
+1. public 서비스를 시작합니다. public은 xrootd 서비스만 올리면 됩니다.
+1. group0X-wn03에서 접속 후 파일 확인이 가능한지 xrdfs, xrootdfs 명령어로 확인합니다.
 
 ### group0X-wn03 
 1. 기존 마운트된 디렉토리들과 서비스들을 종료합니다.
+1. mn과 wn01,02 서버들이 설정이 완료된 후 테스트를 진행합니다.
 
 
 ### gropu0X-wn0{1,2}
 1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
-1. xrootd, cmsd 서비스를 중지합니다.
+1. 위 제공된 방화벽 설정을 적용합니다.
+1. xrootd-myconf.cfg 파일을 xrootd-chap4wn.cfg로 복사한 후 내용을 위 설정을 참고하여 수정합니다.
+1. 
 
 
 ## 실습 Self Check
-
-
-#### xrdfs 테스트
-1. wn03에서 mn을 통해 xrdfs가 작동하면 성공적으로 서비스를 실행한 것입니다.
+### xrdfs 테스트
+   * wn03에서 mn을 통해 xrdfs가 작동하면 성공적으로 서비스를 실행한 것입니다.
+      * wn03은 기본적으로 wn01, 02와 통신을 할 수 없으므로 파일 내용 확인 및 파일 복사를 할 수 없습니다.
+      * 지금처럼 xrootdfs를 통해 간접적으로 통신을 수행하면 파일을 가져올 수 있습니다.
 
 
 ## 토의
