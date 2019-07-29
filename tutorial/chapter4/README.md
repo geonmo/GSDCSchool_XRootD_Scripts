@@ -73,7 +73,7 @@ all.role manager
 ### 자세한 설명은 XRootD 설명을 보십시오. 
 xrd.network nodnr norpipa routes split use eth0 
 ```
-   * (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
+#### (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
 ```bash
 ### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
 all.export / readonly
@@ -109,13 +109,16 @@ xrd.network nodnr norpipa routes split use eth0
 ### group0X-wn03 
 1. 기존 마운트된 디렉토리들과 서비스들을 종료합니다.
 1. mn과 wn01,02 서버들이 설정이 완료된 후 테스트를 진행합니다.
+1. 1094포트를 사용하여 접근을 시도합니다.
+1. 1095포트를 사용하여 접근을 시도합니다.
 
 
 ### gropu0X-wn0{1,2}
 1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
 1. 위 제공된 방화벽 설정을 적용합니다.
 1. xrootd-myconf.cfg 파일을 xrootd-chap4wn.cfg로 복사한 후 내용을 위 설정을 참고하여 수정합니다.
-1. 
+1. 서비스들을 올립니다.
+1. 개별 사이트 내에서 접근이 잘되는지 체크합니다.
 
 
 ## 실습 Self Check
@@ -126,9 +129,13 @@ xrd.network nodnr norpipa routes split use eth0
 
 
 ## 토의
-  
+   * 공인IP와 사설IP 등 2개 이상의 네트워크를 이용한 스토리지 시스템의 필요성은 무엇일까요?
+   * DNS 서비스 없이 스토리지 시스템을 사용할 경우는 어떠한 경우일까요?
+   
    
 ## 주의사항
- 
+   * xrootd, cmsd 서비스가 재시작된 후 접속이 가능해질 때까지는 꽤 긴 시간이 필요합니다.
+      * MN 서버 담당자가 log 파일을 잘 살펴보면 언제쯤 서비스가 시작되는지를 대략적으로 알 수 있습니다.
+      
 ------------
 ## 실습 따라하기 : Chapter3부터는 제공되지 않습니다.
