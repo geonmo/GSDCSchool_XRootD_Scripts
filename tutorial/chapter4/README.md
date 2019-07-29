@@ -25,20 +25,28 @@
    
 ## 주요 설정 파일 내용
    * group0X-mn 
+#### (1) 내부 네트워크용 설정파일
 ```bash
+### 아래 IP 주소는 꼭 확인을 해주시기 바랍니다.
+set xrdr=10.0.20.10  
 all.role manager
 
 xrd.port 1094
 all.manager $(xrdr):3122
+
+### 아래 설정은 내부 연결이 공인 IP로 구성되어 있지 않을 때 반드시 설정해야 합니다.
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 ```
+#### (2) 외부 접속용 설정파일 : 앞 챕터의 wn03(standalone 설정과 같습니다.)
+
    * group0X-wn0{1,2}
 ```bash
 all.export /data 
-set xrdr=group09-mn
+set xrdr=10.0.20.10
 all.manager $(xrdr) 3121
 all.role server
 cms.space min 200m 500m
+### 아래 설정은 내부 연결이 공인 IP로 구성되어 있지 않을 때 반드시 설정해야 합니다.
 xrd.network nokeepalive nodnr norpipa routes split use eth0 
 
 ```
@@ -57,31 +65,14 @@ xrd.network nokeepalive nodnr norpipa routes split use eth0
 ### gropu0X-wn0{1,2}
 1. 기존 xrootdfs가 마운트되어 있다면 모두 해제합니다.
 1. xrootd, cmsd 서비스를 중지합니다.
-1. /cms/nas 디렉토리에 group0X-wn03:1095(on wn01)와 gropu0X-wn03:1096(on wn02)을 xrootdfs 명령어 혹은 fstab을 수정하여 마운트합니다.
-1. 기존 xrootd-multidisk.cfg 파일을 xrootd-mix.cfg로 복사합니다.
-1. xrootd-mix.cfg에 oss.space public /mnt/nas를 추가합니다.
-1. xrootd-mix.cfg에 all.export /data 를 all.export /data noxattrs로 변경합니다. (noxattrs 추가)
-1. xrootd@mix 서비스를 시작합니다.
+
 
 ## 실습 Self Check
 
 
-#### XRootDFS 테스트
-1. 다음과 같이 xrootdfs를 마운트 합니다.
-```bash
-sudo mkdir /xrootdfs_group0X-wn0Y
-sudo xrootdfs -o rdr=xroot://group0X-wn0Y:1094//data,uid=xrootd /xrdfs_group0X-wn0Y
-sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
-```
-2. 그 후 디렉토리를 확인하여 모든 서버들의 정보가 올바로 표시되는지 확인합니다.
-```bash
-ls /xrootd_group0X-wn0Y
-ls /xrootdfs
-```
-3. /xrootd_group0X-wn0Y 디렉토리는 3GB로 표시되어야 합니다.(디스크 2GB + XRootDFS 1GB) 다음 명령어로 확인할 수 있습니다.
-```bash
-df -h
-```
+#### xrdfs 테스트
+1. wn03에서 mn을 통해 xrdfs가 작동하면 정상적으로 사용이 가능합니다.
+
 
 ## 토의
    * 디스크와 NAS를 섞어 쓸 경우 문제점이 무엇인가요?
