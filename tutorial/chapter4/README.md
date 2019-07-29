@@ -14,7 +14,7 @@
 
 ## 서버 설명
 각 서버들은 다음과 같은 역할로 설정될 것입니다.
-   *  group0X-mn : MN 서버는 XRootD의 Redirector로 활용합니다.
+   *  group0X-mn : MN 서버는 XRootD의 Redirector로 활용합니다. 외부 클라이언트를 위해서는 Standalone XRootD Server로 대응합니다.
    *  group0X-wn01,02 : XRootD의 Server로 활용합니다.
    *  group0X-wn03 : XRootD 클라이언트로 활용합니다.
 ![tutorial4](https://user-images.githubusercontent.com/4969463/62031449-5ec34b00-b222-11e9-8e70-ea07fbaf8418.png)
