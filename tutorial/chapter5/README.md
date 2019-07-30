@@ -42,6 +42,7 @@ wget http://www.gutenberg.org/cache/epub/29607/pg29607.txt
 
 ## 실습 따라하기 
    * [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
+      * 아래 내용으로 bind_test.py 이름으로 저장한 후 실행권한을 줍니다. ( chmod +x bind_test.py )
 ```bash
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
