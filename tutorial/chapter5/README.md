@@ -45,6 +45,7 @@ wget http://www.gutenberg.org/cache/epub/29607/pg29607.txt
 ```bash
 from XRootD import client
 from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
+import glob
 
 myclient = client.FileSystem('root://group09-mn:1096')
 status, listing = myclient.dirlist('/data', DirListFlags.STAT)
@@ -52,7 +53,14 @@ status, listing = myclient.dirlist('/data', DirListFlags.STAT)
 print listing.parent
 for entry in listing:
   print "{0} {1:>10} {2}".format(entry.statinfo.modtimestr, entry.statinfo.size, entry.name)
-  
+
+filelist = glob.glob("*.txt")
+print filelist
+
+for novel_file in filelist:
+  status = myclient.copy(novel_file, 'root//group09-mn:1096//data/%s'%(novel_file), force=True)
+  assert status.ok
+
 
 ```
 2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
