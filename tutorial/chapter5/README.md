@@ -86,3 +86,11 @@ process.run()
 ## 주의사항
    * utf-8 인코딩 설정을 하지 않으면 한글 주석을 사용하실 수 없습니다.
    * add_job 함수 내에서는 string을 통한 이름 지정이 되지 않습니다. 위 2줄을 참고 바랍니다.
+   * 혹시 아래 에러가 발생한다면 서버 이름을 확인해주세요.
+```
+[gsdc@group09-wn03 ~]$ ./bind_test.py 
+Traceback (most recent call last):
+  File "./bind_test.py", line 14, in <module>
+    print listing.parent
+AttributeError: 'NoneType' object has no attribute 'parent'
+```
