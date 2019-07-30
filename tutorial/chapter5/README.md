@@ -43,8 +43,11 @@ wget http://www.gutenberg.org/cache/epub/29607/pg29607.txt
 ## 실습 따라하기 
    * [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
 ```bash
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 from XRootD import client
 from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
+
 import glob
 
 myclient = client.FileSystem('root://group09-mn:1096')
