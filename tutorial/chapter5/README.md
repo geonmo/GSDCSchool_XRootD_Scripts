@@ -27,6 +27,12 @@ xrd.port 1096
 pss.origin = group09-mn:1094
 ofs.osslib libXrdPss.so
 ```
+   * 1096/tcp 포트를 오픈해줍니다.
+```bash
+sudo firewall-cmd --permanent --add-port=1096/tcp
+sudo firewall-cmd --reload
+```
+   
 ## 실습 따라하기 
    * [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
 ```bash
