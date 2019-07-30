@@ -32,7 +32,14 @@ ofs.osslib libXrdPss.so
 sudo firewall-cmd --permanent --add-port=1096/tcp
 sudo firewall-cmd --reload
 ```
-   
+   * 테스트를 위한 텍스트 파일을 다운로드 받습니다. 명령어 자체는 아래와 같습니다.
+```bash
+wget http://www.gutenberg.org/cache/epub/31547/pg31547.txt
+wget http://www.gutenberg.org/cache/epub/41481/pg41481.txt
+wget http://www.gutenberg.org/cache/epub/28617/pg28617.txt
+wget http://www.gutenberg.org/cache/epub/29607/pg29607.txt
+```
+
 ## 실습 따라하기 
    * [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
 ```bash
@@ -45,6 +52,8 @@ status, listing = myclient.dirlist('/data', DirListFlags.STAT)
 print listing.parent
 for entry in listing:
   print "{0} {1:>10} {2}".format(entry.statinfo.modtimestr, entry.statinfo.size, entry.name)
+  
+
 ```
 2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
 
