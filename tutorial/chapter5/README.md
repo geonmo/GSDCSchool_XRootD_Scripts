@@ -19,13 +19,13 @@
 ```bash
 sudo yum install -y xrootd-python
 ```
-   * Python Bind는 xrootd proxy 서버를 대상으로 하기 때문에 해당 기능을 사용하기 위해서는 부득이하게 /xrootdfs standalone으로 구성하셔야 합니다.
-      * 아래 설정으로 group-mn 서버에서 xrootd-public.cfg 파일을 생성하고 서비스를 올려줍니다.
+   * Python Bind는 xrootd proxy 서버를 대상으로 하기 때문에 아래 설정으로 group-mn 서버에서 xrootd-proxy.cfg 파일을 생성하고 서비스를 올려줍니다.
 ```bash
-### 주석들 제외하면 아래와 같음. all.role을 지정하지 않으면 server로 설정됨.
-all.export /
-oss.localroot /xrootdfs
-xrd.port 1095  
+all.export /data
+set xrdr=group09-mn
+xrd.port 1096
+pss.origin = group09-mn:1094
+ofs.osslib libXrdPss.so
 ```
 ## 실습 따라하기 
    * [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
