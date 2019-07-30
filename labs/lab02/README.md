@@ -5,7 +5,7 @@
    * 네이버 뉴스를 분석해보자.
 
 ## 랩 개요
-이번 랩에서는 제공되는 네이버 뉴스 자료를 이용하여 여러분만의 분석 시스템을 활용해보도록 하겠습니다.
+이번 랩에서는 여러분의 분석 시스템을 활용하여 주어진 네이버 뉴스 자료를 간단하게 분석해봅시다.
 
 ## 데이터 설명
    * 데이터는 Python 모듈 중 하나인 [KoreaNewsCrawler](https://github.com/lumyjuwon/KoreaNewsCrawler)를 사용하여 네이버 자료들을 수집하였습니다.
@@ -62,7 +62,7 @@ fc-list | grep Nanum
 
 위 방법으로 설치된 폰트는 해당 사용자만 사용이 가능합니다. 전체 사용자가 사용하도록 설정하시려면 **/usr/share/fonts** 디렉토리를 사용하시기 바랍니다.
 #### 그래픽 환경 구성
-그림 등의 그래픽적인 요소를 사용하기 위해서는 X-Windows 설정이 필요합니다.
+그림 등의 그래픽 요소를 사용하기 위해서는 X-Windows 설정이 필요합니다.
 
 다음 링크를 참고하여 X-Windows 환경 구축을 해주시기 바랍니다.
 
@@ -81,6 +81,7 @@ fc-list | grep Nanum
    * 해당 파일들을 1차 가공하기 위한 간단한 스크립트인[wordcounter.py](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/blob/master/utils/wordcounter.py)를 제공해드립니다. 
       * 해당 스크립트를 통해 뉴스별(드린 데이터의 1줄이 1개의 뉴스기사)로 주요 단어들을 확인하실 수 있습니다.
       * 이 스크립트를 HTCondor 배치 작업으로 실행하면 보다 빠른 시간에 작업을 마무리할 수 있습니다.
+      * 가장 간단한 방법으로 데이터를 모집하기 때문에 해당 스크립트는 성능이 좋지 않습니다. 이를 개량할 아이디어도 생각해봅시다.
    * wordcounter.py를 통해 출력된 결과물을 그대로 저장한 후 [loadOuput.py](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/blob/master/utils/loadOutput.py)로 이를 그림으로 보실 수 있습니다.
       * 해당 프로그램은 python Pandas를 통해 데이터를 분석합니다. 
          * 폰트 설정 등이 포함되어 있으며 groupby를 통한 데이터 선택과 그래프화하는 간단한 코드입니다. 참고용으로 보시면 됩니다.
