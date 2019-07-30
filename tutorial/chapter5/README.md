@@ -54,9 +54,6 @@ print listing.parent
 for entry in listing:
   print "{0} {1:>10} {2}".format(entry.statinfo.modtimestr, entry.statinfo.size, entry.name)
 
-filelist = glob.glob("*.txt")
-print filelist
-
 for novel_file in filelist:
   status = myclient.copy(novel_file, 'root//group09-mn:1096//data/%s'%(novel_file), force=True)
   assert status.ok
