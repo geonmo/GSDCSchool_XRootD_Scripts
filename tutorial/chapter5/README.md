@@ -51,12 +51,18 @@ from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
 
 import glob
 
+## group0X-mn xrootd proxy서버에 접속합니다.
 myclient = client.FileSystem('root://group0X-mn:1096')
+
+## /data 디렉토리 내용을 확인합니다.
 status, listing = myclient.dirlist('/data', DirListFlags.STAT)
 
 print listing.parent
 for entry in listing:
   print "{0} {1:>10} {2}".format(entry.statinfo.modtimestr, entry.statinfo.size, entry.name)
+
+## /data/novel 디렉토리를 만듭니다.
+myclient.mkdir("/data/novel", MkDirFlags.MAKEPATH)
 
 
 ## 파일 이름을 패턴으로 검색합니다.
@@ -65,7 +71,7 @@ print filelist
 process = client.CopyProcess()
 for novel in filelist:
         infile = '/home/gsdc/%s'%(novel)
-        ofile = 'root://group0X-mn:1096//data/%s'%(novel)
+        ofile = 'root://group0X-mn:1096//data/novel/%s'%(novel)
         process.add_job( infile, ofile )
 process.prepare()
 process.run()
