@@ -27,6 +27,11 @@ from XRootD import client
 from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
 
 myclient = client.FileSystem('root://group09-mn:1094')
+status, listing = myclient.dirlist('/data', DirListFlags.STAT)
+
+print listing.parent
+for entry in listing:
+  print "{0} {1:>10} {2}".format(entry.statinfo.modtimestr, entry.statinfo.size, entry.name)
 ```
 2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
 
