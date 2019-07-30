@@ -77,7 +77,7 @@ process.prepare()
 process.run()
 ```
 2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
-
+   * 위 내용을 참고하여 [파일 따라하기]를 진행해보시기 바랍니다.
 
 
 ## 토의
