@@ -22,9 +22,9 @@ sudo yum install -y xrootd-python
    * Python Bind는 xrootd proxy 서버를 대상으로 하기 때문에 아래 설정으로 group-mn 서버에서 xrootd-proxy.cfg 파일을 생성하고 서비스를 올려줍니다.
 ```bash
 all.export /data
-set xrdr=group09-mn
+set xrdr=group0X-mn
 xrd.port 1096
-pss.origin = group09-mn:1094
+pss.origin = group0X-mn:1094
 ofs.osslib libXrdPss.so
 ```
    * 1096/tcp 포트를 오픈해줍니다.
@@ -51,7 +51,7 @@ from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
 
 import glob
 
-myclient = client.FileSystem('root://group09-mn:1096')
+myclient = client.FileSystem('root://group0X-mn:1096')
 status, listing = myclient.dirlist('/data', DirListFlags.STAT)
 
 print listing.parent
@@ -65,7 +65,7 @@ print filelist
 process = client.CopyProcess()
 for novel in filelist:
         infile = '/home/gsdc/%s'%(novel)
-        ofile = 'root://group09-mn:1096//data/%s'%(novel)
+        ofile = 'root://group0X-mn:1096//data/%s'%(novel)
         process.add_job( infile, ofile )
 process.prepare()
 process.run()
