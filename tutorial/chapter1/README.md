@@ -114,12 +114,17 @@ sudo xrootdfs -o rdr=xroot://group0X-mn:1094//data,uid=xrootd /xrootdfs
 ```bash
 ls /xrootdfs
 ```
-3. (선택사항) 위 xrootdfs 마운트는 /etc/fstab에 다음 내용을 추가한 후 *mount /xrootdfs* 명령어로 마운트할 수 있습니다. 이렇게 설정된 내용은 부팅이후에도 마찬가지로 적용됩니다.
+3. (선택사항) 위 xrootdfs 마운트를 부팅 후에도 적용되도록 설정할 수 있습니다.
+   * /etc/fstab에 다음 내용을 추가하십시오.
 ```bash
 xrootdfs	/xrootdfs	fuse	rdr=xroot://group09-mn:1094//data,uid=xrootd 0 0
 ```
-
-
+   * 다음 명령어로 해당 디렉토리를 마운트합니다.
+```bash
+mount /xrootdfs
+```
+   * /etc/fstab에 입력된 정보는 서버가 기억하고 있기 때문에 별도의 옵션 없이 마운트가 가능합니다.
+   
 ## 주의사항
    * Solution 디렉토리에 답안이 준비되어 있으나 실습 단계에서는 보고 따라 쳐주시기 바랍니다.
    * 설정 파일의 주석은 샵 기호(\#)로 할 수 있습니다.
