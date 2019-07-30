@@ -21,7 +21,13 @@ sudo yum install -y xrootd-python
 ```
    
 ## 실습 따라하기 
-1. [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
+   * [파일시스템 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/filesystem.html)
+```bash
+from XRootD import client
+from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
+
+myclient = client.FileSystem('root://group09-mn:1094')
+```
 2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
 
 
