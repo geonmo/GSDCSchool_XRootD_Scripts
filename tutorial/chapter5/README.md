@@ -33,8 +33,8 @@ ofs.osslib libXrdPss.so
 from XRootD import client
 from XRootD.client.flags import DirListFlags, OpenFlags, MkDirFlags, QueryCode
 
-myclient = client.FileSystem('root://group09-mn:1095')
-status, listing = myclient.dirlist('/', DirListFlags.STAT)
+myclient = client.FileSystem('root://group09-mn:1096')
+status, listing = myclient.dirlist('/data', DirListFlags.STAT)
 
 print listing.parent
 for entry in listing:
