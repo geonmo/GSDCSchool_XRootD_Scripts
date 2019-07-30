@@ -68,6 +68,8 @@ myclient.mkdir("/data/novel", MkDirFlags.MAKEPATH)
 ## 파일 이름을 패턴으로 검색합니다.
 filelist = glob.glob("*.txt")
 print filelist
+
+## 파일들을 복사합니다.
 process = client.CopyProcess()
 for novel in filelist:
         infile = '/home/gsdc/%s'%(novel)
@@ -78,7 +80,15 @@ process.run()
 ```
 2. [파일 따라하기](http://xrootd.org/doc/python/xrootd-python-0.1.0/examples/file.html)
    * 위 내용을 참고하여 [파일 따라하기]를 진행해보시기 바랍니다.
+```bash
+from XRootD import client
+from XRootD.client.flags import OpenFlags
 
+with client.File() as f:
+  f.open('root://group09-mn:1096//data/novel/pg31547.txt', OpenFlags.READ)
+    for line in f:
+    print '%r' % line
+```
 
 ## 토의
   
