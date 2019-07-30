@@ -66,7 +66,8 @@ fc-list | grep Nanum
 
 다음 링크를 참고하여 X-Windows 환경 구축을 해주시기 바랍니다.
 
-   * [윈도우 환경에서의 xming 설정](https://m.blog.naver.com/PostView.nhn?blogId=monocho&logNo=221114374493&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+   * 윈도우 환경에서
+      * [xming 설정](https://m.blog.naver.com/PostView.nhn?blogId=monocho&logNo=221114374493&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
       * [MobaXterm](https://mobaxterm.mobatek.net/)을 쓰시면 X-Windows를 자동으로 설치해줍니다
    * [OSX 환경을 위한 XQuartz](https://www.xquartz.org/)
    * 리눅스 노트북은 별도 설정이 필요 없습니다.
