@@ -11,4 +11,4 @@ git clone https://github.com/geonmo/GSDCSchool_XRootD_Scripts.git
 ## 2. 튜토리얼 진행을 위해 tutorial 디렉토리로 이동해주시기 바랍니다.
 
 ## 3. LabReview
-[랩 리뷰 페이지](https://docs.google.com/presentation/d/1LhSpf4y4DXm2n8P_ycvsQtaaI5mkxbxPL33kubLuKB8/edit#slide=id.g5e243d8a77_0_12)
+[랩 리뷰 페이지](https://docs.google.com/presentation/d/1LhSpf4y4DXm2n8P_ycvsQtaaI5mkxbxPL33kubLuKB8/edit?usp=sharing)
