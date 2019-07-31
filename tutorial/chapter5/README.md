@@ -87,7 +87,7 @@ from XRootD.client.flags import OpenFlags
 with client.File() as f:
   f.open('root://group09-mn:1096//data/novel/pg31547.txt', OpenFlags.READ)
   for line in f:
-  print '%r' % line
+    print '%r' % line
 ```
 
 ## 토의
