@@ -18,7 +18,7 @@
 
 ## 실습 준비 
 1. 해당 실습을 하기 앞서 가상의 디스크를 준비합니다.
-   * solution 디렉토리에 있는 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/tree/master/solution/chapter2)**) 파일을 실행하십시오.
+   * solution 디렉토리에 있는 스크립트(**[make_blkdev.sh](https://github.com/geonmo/GSDCSchool_XRootD_Scripts/blob/master/utils/make_blkdev.sh)**) 파일을 실행하십시오.
       * 한줄씩 직접 입력하고 싶은 분들을 위해 명령어를 보여드립니다.
 ```bash
 sudo mkdir /blockdev
