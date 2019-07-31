@@ -163,22 +163,27 @@ sudo firewall-cmd --permanent --add-port=1094/tcp
 sudo firewall-cmd --permanent --add-port=3121/tcp
 sudo firewall-cmd --reload
 ```
-5. /etc/xrootd 디렉토리로 이동하여 xrootd-myconf.cfg 파일을 만듭니다. 
+5. /var/log/xrootd 와 /var/run/xrootd의 소유자를 xrootd로 변경합니다.
+```bash
+ chown -R xrootd.xrootd /var/log/xrootd
+ chown -R xrootd.xrootd /var/run/xrootd
+ ```
+6. /etc/xrootd 디렉토리로 이동하여 xrootd-myconf.cfg 파일을 만듭니다. 
    * xrootd-clustered.cfg 파일을 참고할 수 있습니다만, 해당 파일 자체는 권한 설정의 문제로 작동을 하지 않습니다.
 ```bash
 cd /etc/xrootd
 sudo vim xrootd-myconf.cfg
 ```
-6. /data 디렉토리를 만듭니다.
+7. /data 디렉토리를 만듭니다.
 ```bash
 sudo mkdir /data
 ```
-7. /data 디렉토리의 사용자와 그룹을 변경합니다.
+8. /data 디렉토리의 사용자와 그룹을 변경합니다.
    * -R 옵션은 하부 디렉토리를 전부 바꿀 때 사용합니다. /data에 하부 디렉토리가 없기 때문에 의미는 없습니다.
 ```bash
 sudo chown -R xrootd.xrootd /data
 ```
-8. myconf 설정 파일용 cmsd, xrootd 서비스를 시작합니다. 또한, 이후 부팅시에도 서비스가 시작되도록 활성화합니다.
+9. myconf 설정 파일용 cmsd, xrootd 서비스를 시작합니다. 또한, 이후 부팅시에도 서비스가 시작되도록 활성화합니다.
 ```bash
 sudo systemctl start cmsd@myconf.service
 sudo systemctl enable cmsd@myconf.service
