@@ -165,8 +165,8 @@ sudo firewall-cmd --reload
 ```
 5. /var/log/xrootd 와 /var/run/xrootd의 소유자를 xrootd로 변경합니다.
 ```bash
- chown -R xrootd.xrootd /var/log/xrootd
- chown -R xrootd.xrootd /var/run/xrootd
+ sudo chown -R xrootd.xrootd /var/log/xrootd
+ sudo chown -R xrootd.xrootd /var/run/xrootd
  ```
 6. /etc/xrootd 디렉토리로 이동하여 xrootd-myconf.cfg 파일을 만듭니다. 
    * xrootd-clustered.cfg 파일을 참고할 수 있습니다만, 해당 파일 자체는 권한 설정의 문제로 작동을 하지 않습니다.
