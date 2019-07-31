@@ -58,7 +58,7 @@ PORT     STATE    SERVICE
 ```
 ## 추가 정보
    * 자세한xrootd 메뉴얼은 xrootd.org 홈페이지 docs 탭에서 확인이 가능합니다.
-   * 이번 예제는 [xrd 메뉴얼](http://xrootd.org/doc/dev50/xrd_config.pdf)
+   * 이번 예제는 [xrd 메뉴얼](http://xrootd.org/doc/dev50/xrd_config.pdf)을 참고하시면 더욱 자세한 내용을 확인하실 수 있습니다.
 
 ## 주요 설정 파일 내용
 ### group0X-mn 
