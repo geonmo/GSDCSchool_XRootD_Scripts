@@ -56,6 +56,9 @@ Host is up (0.0015s latency).
 PORT     STATE    SERVICE
 1094/tcp closed unknown
 ```
+## 추가 정보
+   * 자세한xrootd 메뉴얼은 xrootd.org 홈페이지 docs 탭에서 확인이 가능합니다.
+   * 이번 예제는 [xrd 메뉴얼](http://xrootd.org/doc/dev50/xrd_config.pdf)
 
 ## 주요 설정 파일 내용
 ### group0X-mn 
