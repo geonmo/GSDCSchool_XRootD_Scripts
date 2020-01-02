@@ -146,6 +146,7 @@ mount /xrootdfs
    * 내용 중 홈페이지 내용 중 _[Yum Repositories]_ - _[Stable]_ 항목의 *xrootd-stable-slc7.repo* 글자 위에서 마우스 오른쪽을 클릭하고 **링크 주소 복사**를 누르시면 URL을 복사할 수 있습니다.
 ```bash
 sudo wget http://xrootd.org/binaries/xrootd-stable-slc7.repo -P /etc/yum.repos.d/
+```
 2. 다음 명령어로 패키지를 설치합니다.
 ```bash
 sudo yum install -y xrootd
