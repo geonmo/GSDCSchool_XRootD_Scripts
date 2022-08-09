@@ -32,7 +32,7 @@
 모든 머신들에 python 분석 툴을 이용하여 간단한 분석 작업 프로그램을 설치합니다.
 다음 명령어를 따라 입력해주십시오.
 ```bash
-sudo yum install -y numpy python-pandas python-matplotlib
+sudo yum install -y numpy python-pandas python-matplotlib unzip
 ```
 #### 2. 한글 폰트 설치
 네이버 뉴스는 한글 뉴스들이기 때문에 최종적으로 그림을 그릴 때에는 한글 폰트가 필요합니다.
